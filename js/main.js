@@ -23,9 +23,15 @@
 
   // 1) 아래에서 떠오름 — 제목·텍스트·기본 카드
   tag(document.querySelectorAll(
-    '.section-title, .card, .step, .doctor-info, ' +
+    '.section-title, .step, .doctor-info, ' +
     '.band-quote, .band-tags, .blog-cta, .ba-slider, .pillar'
   ), 'fx-up');
+
+  // 1-b) 카드: 진료 안내(#services)는 오른쪽에서 미끄러져 들어옴, 나머지는 떠오름
+  document.querySelectorAll('.card').forEach(function (el) {
+    if (el.closest(EXCLUDE)) return;
+    el.classList.add('reveal', el.closest('#services') ? 'fx-right' : 'fx-up');
+  });
 
   // 2) 사진 줌아웃 — 갤러리, 인물/병원 사진
   tag(document.querySelectorAll('.gallery-item, .about-visual, .doctor-photo'), 'fx-photo');
@@ -38,8 +44,14 @@
   document.querySelectorAll('.reveal').forEach(function (el) {
     var parent = el.parentElement;
     var n = groups.get(parent) || 0;
-    el.style.setProperty('--d', Math.min(n * 0.1, 0.5) + 's');
+    el.style.setProperty('--d', Math.min(n * 0.14, 0.7) + 's');
     groups.set(parent, n + 1);
+  });
+
+  // 진료 안내 카드는 오른쪽 카드부터 순서대로 (오른쪽 → 왼쪽 물결)
+  var svcCards = document.querySelectorAll('#services .card');
+  svcCards.forEach(function (el, i) {
+    el.style.setProperty('--d', ((svcCards.length - 1 - i) * 0.16) + 's');
   });
 
   var observer = new IntersectionObserver(function (entries) {
