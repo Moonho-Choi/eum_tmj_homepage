@@ -30,6 +30,9 @@
   // 2) 사진 줌아웃 — 갤러리, 인물/병원 사진
   tag(document.querySelectorAll('.gallery-item, .about-visual, .doctor-photo'), 'fx-photo');
 
+  // 3) 네이비 밴드(턱관절 중심 진료) — 흐리고 어두운 상태에서 점점 밝고 선명하게
+  tag(document.querySelectorAll('.navy-band'), 'fx-band');
+
   // 그리드 안 형제들은 순차 등장 (도미노)
   var groups = new Map();
   document.querySelectorAll('.reveal').forEach(function (el) {

@@ -518,6 +518,16 @@ a { color: inherit; text-decoration: none; }
   body.fx .fx-photo { transform: scale(1.07); filter: blur(6px); }
   body.fx .fx-photo.visible { filter: blur(0); transition: opacity 0.8s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease; }
 
+  /* 네이비 밴드(턱관절 중심 진료): 어둡고 흐린 상태에서 점점 밝고 선명해짐 */
+  body.fx .fx-band {
+    opacity: 0.15; transform: scale(0.985);
+    filter: blur(10px) brightness(0.55);
+    transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s ease;
+  }
+  body.fx .fx-band.visible {
+    opacity: 1; transform: none; filter: blur(0) brightness(1);
+  }
+
   /* 히어로 첫 진입 애니메이션 */
   .hero .eyebrow, .hero h1, .hero p, .hero .hero-buttons {
     animation: heroUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
