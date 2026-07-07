@@ -1,0 +1,5 @@
+# GitHub에 올리지 않을 항목
+원본사진/
+배포용/
+.DS_Store
+*.textClipping
