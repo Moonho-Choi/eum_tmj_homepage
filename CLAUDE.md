@@ -1,0 +1,29 @@
+# 이음턱편한치과 홈페이지 (eumtmj.co.kr) — 프로젝트 안내
+
+이 폴더는 이음턱편한치과 홈페이지의 소스이자 git 저장소입니다. 이 파일을 읽었다면 아래 내용을 프로젝트 맥락으로 삼으세요.
+
+## 사용자
+최문호 원장 (치과의사, 비개발자). 서울 관악구 은천로 169 1층, 전화 02-6745-2754, 사업자 760-46-00304.
+진료시간: 월화수금 09:30–18:00(17:00 접수마감), 토 09:30–13:00(12:00 마감), 목·일 휴진, 휴게 12:30–14:00(토 제외).
+
+## 구조
+- index.html(메인) / tmj.html(턱관절 클리닉) / doctor.html(의료진 소개) / css/style.css / js/main.js
+- 호스팅: GitHub Pages (github.com/Moonho-Choi/eum_tmj_homepage, public, main 브랜치 root)
+- 배포: 파일 수정 → 사용자가 GitHub Desktop에서 Commit → Push → 1~2분 내 자동 반영 (Netlify에서 이전 완료, 사용 안 함)
+- 도메인: eumtmj.co.kr (가비아. A 185.199.108~111.153, www CNAME moonho-choi.github.io)
+- `배포용/`, `원본사진/` 폴더는 gitignore 제외 (원본사진 = 고해상 원본 보관용)
+- GA4: G-P7NGVN2EPZ (3페이지 공통 + 전화클릭 이벤트 phone_call_click)
+- SEO: canonical은 https://eumtmj.co.kr 기준. OG태그, JSON-LD(Dentist), sitemap.xml, robots.txt, 네이버 서치어드바이저 소유확인+사이트맵 제출 완료
+
+## 작업 규칙
+- 채팅에 첨부된 이미지는 파일로 전달되지 않음 → 사용자가 images/ 폴더에 파일을 넣으면 PIL로 웹용 최적화(최대 1400~2400px, JPEG q82) 후 사용
+- 아이콘은 이모지 금지, 모노톤 라인 SVG(stroke currentColor) 사용
+- 의료광고 심의 주의: 효과 보장·비교우위 표현 금지("효과가 더 뛰어나다" 등). 치료 전후 사진에는 "치료 결과는 개인에 따라 다를 수 있습니다" 문구 유지
+- 브랜드 카피: "턱의 편안함에서 시작되는 건강한 미소", "정확한 진단, 바른 치료", "턱관절의 균형이, 삶의 균형을 만듭니다"
+- 네이버 블로그(blog.naver.com/eumdentalclinic)는 Claude 환경에서 접속 차단 → 글 URL은 사용자에게 요청
+- 스크롤 애니메이션(js/main.js): #why, #equipment, #location, .banner-cta는 효과 제외 구역
+
+## 남은 작업
+1. 건강 칼럼 카드 3개 — 블로그 글 작성되는 대로 실제 링크 연결
+2. GA4 데이터 축적 후 Looker Studio 주간 자동 리포트 설정
+3. 네이버 스마트플레이스에 홈페이지 주소 등록 (사용자 직접)
