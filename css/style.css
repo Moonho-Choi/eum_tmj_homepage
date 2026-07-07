@@ -501,15 +501,22 @@ a { color: inherit; text-decoration: none; }
 .site-footer a:hover { color: #fff; }
 .copyright { border-top: 1px solid #263442; padding-top: 20px; font-size: 0.8rem; }
 
-/* ---------- 스크롤 애니메이션 ---------- */
+/* ---------- 스크롤 애니메이션 (요소별로 다른 효과) ---------- */
 @media (prefers-reduced-motion: no-preference) {
   /* JS가 body에 fx 클래스를 붙인 경우에만 동작 (JS 꺼져 있으면 그냥 표시) */
   body.fx .reveal {
-    opacity: 0; transform: translateY(26px);
-    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transition: opacity 0.7s ease, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
     transition-delay: var(--d, 0s);
   }
   body.fx .reveal.visible { opacity: 1; transform: none; }
+
+  body.fx .fx-up { transform: translateY(28px); }
+  body.fx .fx-left { transform: translateX(-48px); }
+  body.fx .fx-right { transform: translateX(48px); }
+  body.fx .fx-zoom { transform: scale(0.92); }
+  body.fx .fx-photo { transform: scale(1.07); filter: blur(6px); }
+  body.fx .fx-photo.visible { filter: blur(0); transition: opacity 0.8s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease; }
 
   /* 히어로 첫 진입 애니메이션 */
   .hero .eyebrow, .hero h1, .hero p, .hero .hero-buttons {
