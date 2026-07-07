@@ -7,6 +7,19 @@
 // 효과 제외: "다른 이유"(#why), 장비 소개(#equipment), 오시는길(#location),
 //           자가진단 배너(banner-cta), FAQ, 체크리스트 등
 // ============================================
+// 전화 버튼 클릭을 GA 이벤트로 집계
+(function () {
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('a[href^="tel:"]');
+    if (link && typeof gtag === 'function') {
+      gtag('event', 'phone_call_click', {
+        event_category: 'contact',
+        event_label: location.pathname
+      });
+    }
+  });
+})();
+
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   document.body.classList.add('fx');
