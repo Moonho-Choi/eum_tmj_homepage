@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>턱관절 자가진단 | 이음턱편한치과</title>
+  <meta name="naver-site-verification" content="f2b9165d45489581fee28c95977fc2c514b8e2a2" />
+  <link rel="canonical" href="https://eumtmj.co.kr/check.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="턱관절 자가진단 | 이음턱편한치과" />
+  <meta property="og:description" content="2분이면 끝나는 턱관절 증상 자가진단 — 22개 질문에 답하면 현재 상태 단계와 관리 방법을 안내해 드립니다." />
+  <meta property="og:url" content="https://eumtmj.co.kr/check.html" />
+  <meta property="og:image" content="https://eumtmj.co.kr/images/hero.jpg" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta name="description" content="턱관절 소리, 통증, 개구 장애 — 22개 질문으로 내 턱관절 상태를 확인해 보세요. 이음턱편한치과 턱관절 자가진단." />
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P7NGVN2EPZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P7NGVN2EPZ');
+  </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ===== 자가진단 페이지 전용 스타일 ===== */
+    .check-shell { max-width: 760px; margin: 0 auto; }
+
+    .progress-card {
+      position: sticky; top: 68px; z-index: 50;
+      background: #fff; border: 1px solid var(--border); border-radius: 12px;
+      padding: 14px 18px; margin-bottom: 28px;
+      box-shadow: 0 4px 14px rgba(15,76,99,0.06);
+    }
+    .progress-labels { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; }
+    .progress-labels span:last-child { color: var(--primary); }
+    .progress-track { height: 8px; background: var(--bg-soft); border-radius: 999px; overflow: hidden; }
+    .progress-bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 999px; transition: width 0.3s; }
+
+    .form-section {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px 26px; margin-bottom: 24px;
+    }
+    .sec-head { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 22px; }
+    .sec-head .num {
+      width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0;
+      background: var(--primary); color: #fff; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .sec-head h2 { font-size: 1.15rem; font-weight: 800; color: var(--primary-dark); }
+    .sec-head p { font-size: 0.88rem; color: var(--text-light); margin-top: 2px; }
+
+    .q { border: none; padding: 18px 0; border-top: 1px solid var(--border); }
+    .q:first-of-type { border-top: none; padding-top: 0; }
+    .q legend, .q .q-title {
+      font-weight: 700; font-size: 0.98rem; margin-bottom: 12px; color: var(--text);
+      display: block; padding: 0;
+    }
+    .q .opt-label { font-size: 0.8rem; color: var(--text-light); font-weight: 600; }
+    .q.unanswered legend { color: #c0392b; }
+
+    .choices { display: flex; flex-wrap: wrap; gap: 8px; }
+    .choice { position: relative; }
+    .choice input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+    .choice span {
+      display: inline-block; padding: 9px 16px; border-radius: 999px;
+      border: 1.5px solid var(--border); background: #fff;
+      font-size: 0.9rem; font-weight: 600; color: var(--text-light);
+      cursor: pointer; transition: all 0.15s; user-select: none;
+    }
+    .choice input:checked + span {
+      background: var(--primary); border-color: var(--primary); color: #fff;
+    }
+    .choice input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    .q input[type="text"], .q textarea {
+      width: 100%; border: 1.5px solid var(--border); border-radius: 10px;
+      padding: 12px 14px; font: inherit; font-size: 0.95rem; color: var(--text);
+    }
+    .q input[type="text"]:focus, .q textarea:focus { outline: none; border-color: var(--primary); }
+
+    .pain-row { display: flex; align-items: center; gap: 14px; }
+    .pain-slider { flex: 1; accent-color: var(--primary); height: 32px; }
+    .pain-value {
+      min-width: 46px; text-align: center; font-size: 1.3rem; font-weight: 800;
+      color: var(--primary); background: var(--primary-light); border-radius: 10px; padding: 4px 0;
+    }
+    .range-labels { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-light); margin-top: 6px; }
+
+    .form-msg { color: #c0392b; font-weight: 700; font-size: 0.9rem; text-align: center; min-height: 1.4em; margin-bottom: 10px; }
+    .submit-wrap { text-align: center; padding: 10px 0 30px; }
+
+    .check-note {
+      background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px;
+      padding: 14px 18px; font-size: 0.85rem; color: var(--text-light); margin-bottom: 28px;
+      display: flex; gap: 10px; align-items: flex-start;
+    }
+    .check-note svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; color: var(--primary); }
+
+    /* ----- 결과 화면 ----- */
+    .result-level {
+      text-align: center; border-radius: var(--radius); padding: 40px 24px 34px;
+      color: #fff; margin-bottom: 24px;
+    }
+    .result-level .lv-badge {
+      display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.45);
+      padding: 6px 18px; border-radius: 999px; font-size: 0.85rem; font-weight: 700; margin-bottom: 14px;
+    }
+    .result-level h2 { font-size: clamp(1.3rem, 3vw, 1.7rem); font-weight: 800; margin-bottom: 10px; }
+    .result-level p { font-size: 0.95rem; opacity: 0.92; max-width: 520px; margin: 0 auto; }
+    .lv-1 { background: linear-gradient(145deg, #2e8b57, #3fa796); }
+    .lv-2 { background: linear-gradient(145deg, #d99b2b, #e0b04c); }
+    .lv-3 { background: linear-gradient(145deg, #d97b2b, #e08c4c); }
+    .lv-4 { background: linear-gradient(145deg, #c0392b, #d95b4c); }
+
+    .score-wrap { max-width: 420px; margin: 22px auto 0; }
+    .score-track { height: 12px; background: rgba(255,255,255,0.25); border-radius: 999px; overflow: hidden; }
+    .score-fill { height: 100%; width: 0; background: #fff; border-radius: 999px; transition: width 1.2s cubic-bezier(0.16,1,0.3,1); }
+    .score-nums { display: flex; justify-content: space-between; font-size: 0.78rem; opacity: 0.85; margin-top: 6px; }
+
+    .result-card {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 26px; margin-bottom: 20px;
+    }
+    .result-card h3 {
+      font-size: 1.05rem; font-weight: 800; color: var(--primary-dark);
+      border-left: 4px solid var(--brand-blue); padding-left: 10px; margin-bottom: 16px;
+    }
+    .symptom-list { list-style: none; }
+    .symptom-list li {
+      display: flex; justify-content: space-between; gap: 12px;
+      padding: 9px 0; border-bottom: 1px dashed var(--border); font-size: 0.92rem;
+    }
+    .symptom-list li:last-child { border-bottom: none; }
+    .symptom-list .sv { font-weight: 700; color: var(--primary); white-space: nowrap; }
+    .symptom-list li.warn .sv { color: #c0392b; }
+
+    .advice-list { list-style: none; }
+    .advice-list li { position: relative; padding-left: 24px; margin-bottom: 10px; font-size: 0.92rem; color: var(--text); }
+    .advice-list li::before { content: "✓"; position: absolute; left: 2px; color: var(--accent); font-weight: 900; }
+
+    .redflag-box {
+      background: #fdf0ee; border: 1px solid #eec4bd; border-radius: 12px;
+      padding: 14px 18px; font-size: 0.88rem; color: #a33325; margin-bottom: 20px; font-weight: 600;
+    }
+
+    .cta-card {
+      background: linear-gradient(150deg, #14263b 0%, #1d3a57 100%);
+      border-radius: var(--radius); padding: 36px 26px; text-align: center; color: #fff;
+      margin-bottom: 20px;
+    }
+    .cta-card .gold { color: #c9ab6e; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.05em; }
+    .cta-card h3 { font-size: 1.35rem; font-weight: 800; margin: 8px 0 6px; }
+    .cta-card p { font-size: 0.9rem; color: rgba(255,255,255,0.75); margin-bottom: 20px; }
+    .cta-card .tel {
+      display: inline-block; background: #fff; color: var(--primary-dark);
+      font-size: 1.15rem; font-weight: 900; padding: 14px 34px; border-radius: 999px;
+      transition: transform 0.2s;
+    }
+    .cta-card .tel:hover { transform: translateY(-2px); }
+    .cta-card .cta-sub { margin-top: 14px; font-size: 0.82rem; color: rgba(255,255,255,0.65); }
+    .cta-card .cta-sub a { text-decoration: underline; color: rgba(255,255,255,0.85); }
+
+    .result-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; padding-bottom: 30px; }
+
+    @media print {
+      .site-header, .quickbar, .result-actions, .cta-card, footer, .progress-card { display: none !important; }
+      body { padding-bottom: 0 !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== 헤더 ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="이음턱편한치과의원">
+        <img src="images/logo.png" alt="이음 턱편한 치과의원" class="logo-img" />
+      </a>
+      <button class="menu-toggle" aria-label="메뉴 열기" onclick="document.querySelector('.main-nav').classList.toggle('open')">☰</button>
+      <nav class="main-nav">
+        <a href="index.html#about">병원 소개</a>
+        <a href="doctor.html">의료진 소개</a>
+        <a href="index.html#services">진료 안내</a>
+        <a href="tmj.html">턱관절 클리닉</a>
+        <a href="index.html#blog">건강 칼럼</a>
+        <a href="index.html#location">오시는 길</a>
+        <a href="tel:02-6745-2754" class="nav-cta"><svg class="ic-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v2a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1A19.5 19.5 0 0 1 5.2 11.8 19.8 19.8 0 0 1 2.1 3.2 2 2 0 0 1 4.1 1h2a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L7.2 8.8a16 16 0 0 0 8 8l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg> 전화 상담</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== 히어로 ===== -->
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Self Check</span>
+      <h1>턱관절 자가진단</h1>
+      <p>최근 2주간의 상태를 떠올리며 답해 주세요.<br />
+        약 2분이면 현재 턱관절 상태 단계를 확인할 수 있습니다.</p>
+    </div>
+  </section>
+
+  <main class="section soft">
+    <div class="container check-shell">
+
+      <div class="check-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01"/><path d="M11 12h1v4h1"/></svg>
+        <span>이 자가진단은 증상을 정리하고 참고 정보를 드리기 위한 것으로, 의학적 진단을 대신하지 않습니다. 정확한 상태는 진료를 통해 확인하실 수 있습니다.</span>
+      </div>
+
+      <!-- ===== 설문 ===== -->
+      <section id="survey-view">
+        <div class="progress-card">
+          <div class="progress-labels"><span>설문 진행</span><span id="progress-value">0% 완료</span></div>
+          <div class="progress-track"><div id="progress-bar" class="progress-bar"></div></div>
+        </div>
+
+        <form id="tmj-form" novalidate>
+
+          <section class="form-section">
+            <div class="sec-head">
+              <span class="num">1</span>
+              <div><h2>증상의 시작</h2><p>불편감이 언제부터 있었는지 알려주세요.</p></div>
+            </div>
+            <fieldset class="q" data-name="onset" data-summary="증상 시작 시기">
+              <legend>1. 턱관절과 관련된 불편감은 언제부터 있었나요?</legend>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="onset" value="1주 이내" data-score="0" /><span>1주 이내</span></label>
+                <label class="choice"><input type="radio" name="onset" value="1개월 이내" data-score="1" /><span>1개월 이내</span></label>
+                <label class="choice"><input type="radio" name="onset" value="1~3개월" data-score="2" /><span>1~3개월</span></label>
+                <label class="choice"><input type="radio" name="onset" value="3개월 이상" data-score="3" /><span>3개월 이상</span></label>
+                <label class="choice"><input type="radio" name="onset" value="잘 모르겠음" data-score="1" /><span>잘 모르겠음</span></label>
+              </div>
+            </fieldset>
+            <div class="q">
+              <label class="q-title" for="onset-detail">2. 기억나는 발생 계기가 있으면 적어주세요. <span class="opt-label">선택</span></label>
+              <input id="onset-detail" type="text" placeholder="예: 2주 전 딱딱한 음식을 먹은 뒤" />
+            </div>
+          </section>
+
+          <section class="form-section">
+            <div class="sec-head">
+              <span class="num">2</span>
+              <div><h2>턱의 움직임과 소리</h2><p>평소와 음식을 먹을 때의 상태를 선택해 주세요.</p></div>
+            </div>
+            <fieldset class="q freq" data-name="sound" data-summary="턱관절 소리" data-weight="2"><legend>3. 입을 벌리거나 다물 때 턱에서 소리가 나나요?</legend><div class="choices"></div></fieldset>
+            <fieldset class="q freq" data-name="stiff" data-summary="턱 움직임 어려움" data-weight="2"><legend>4. 턱이 잘 움직이지 않아 입을 벌리기 어렵나요?</legend><div class="choices"></div></fieldset>
+            <fieldset class="q freq" data-name="lock" data-summary="턱 걸림·잠김" data-weight="2" data-redflag="2"><legend>5. 입을 벌리거나 다물 때 턱이 걸리거나 잠기나요?</legend><div class="choices"></div></fieldset>
+            <fieldset class="q freq" data-name="limit" data-summary="입 벌림 제한" data-weight="2" data-redflag="2"><legend>6. 원하는 만큼 입을 크게 벌리지 못하나요?</legend><div class="choices"></div></fieldset>
+            <fieldset class="q" data-name="side" data-summary="불편한 쪽">
+              <legend>7. 주로 어느 쪽이 불편한가요?</legend>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="side" value="왼쪽" data-score="0" /><span>왼쪽</span></label>
+                <label class="choice"><input type="radio" name="side" value="오른쪽" data-score="0" /><span>오른쪽</span></label>
+                <label class="choice"><input type="radio" name="side" value="양쪽" data-score="1" /><span>양쪽</span></label>
+                <label class="choice"><input type="radio" name="side" value="잘 모르겠음" data-score="0" /><span>잘 모르겠음</span></label>
+              </div>
+            </fieldset>
+          </section>
+
+          <section class="form-section">
+            <div class="sec-head">
+              <span class="num">3</span>
+              <div><h2>통증과 피로감</h2><p>통증이 없으면 0, 가장 심한 통증은 10입니다.</p></div>
+            </div>
+            <div class="q" data-summary="턱 통증 정도">
+              <label class="q-title" for="jaw-pain">8. 현재 턱이나 턱관절의 통증은 어느 정도인가요?</label>
+              <div class="pain-row">
+                <input class="pain-slider" id="jaw-pain" type="range" min="0" max="10" value="0" />
+                <output id="pain-out" class="pain-value">0</output>
+              </div>
+              <div class="range-labels"><span>0 · 통증 없음</span><span>10 · 매우 심함</span></div>
+            </div>
+            <fieldset class="q" data-name="painArea" data-summary="통증·불편 부위" data-multi="true">
+              <legend>9. 통증이나 불편감이 있는 부위를 모두 선택해 주세요. <span class="opt-label">복수 선택</span></legend>
+              <div class="choices">
+                <label class="choice"><input type="checkbox" name="painArea" value="귀 앞쪽" /><span>귀 앞쪽</span></label>
+                <label class="choice"><input type="checkbox" name="painArea" value="관자놀이" /><span>관자놀이</span></label>
+                <label class="choice"><input type="checkbox" name="painArea" value="볼·얼굴" /><span>볼·얼굴</span></label>
+                <label class="choice"><input type="checkbox" name="painArea" value="목" /><span>목</span></label>
+                <label class="choice"><input type="checkbox" name="painArea" value="어깨" /><span>어깨</span></label>
+                <label class="choice"><input type="checkbox" name="painArea" value="해당 없음" data-none="true" /><span>해당 없음</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="q freq" data-name="headache" data-summary="두통" data-weight="1.5"><legend>10. 두통이 있나요?</legend><div class="choices"></div></fieldset>
+            <fieldset class="q freq" data-name="fatigue" data-summary="식사 후 턱 피로감"><legend>11. 식사 후나 질긴 음식을 먹은 뒤 턱이 피곤한가요?</legend><div class="choices"></div></fieldset>
+            <fieldset class="q freq" data-name="morning" data-summary="아침 턱 불편감"><legend>12. 아침에 일어났을 때 턱이 뻐근하거나 머리가 아픈가요?</legend><div class="choices"></div></fieldset>
+            <fieldset class="q freq" data-name="ear" data-summary="귀 통증·이명"><legend>13. 귀 주변 통증이나 이명(귀에서 소리)이 있나요?</legend><div class="choices"></div></fieldset>
+          </section>
+
+          <section class="form-section">
+            <div class="sec-head">
+              <span class="num">4</span>
+              <div><h2>습관과 관련 경험</h2><p>평소 습관과 과거 경험을 떠올려 주세요.</p></div>
+            </div>
+            <fieldset class="q freq" data-name="clench" data-summary="주간 이 악물기"><legend>14. 낮에 이를 꽉 물거나 악무는 버릇이 있나요?</legend><div class="choices"></div></fieldset>
+            <fieldset class="q freq" data-name="grind" data-summary="수면 중 이갈이"><legend>15. 잠잘 때 이를 가는 편인가요?</legend><div class="choices"></div></fieldset>
+            <fieldset class="q freq" data-name="oneside" data-summary="한쪽으로 씹는 습관"><legend>16. 주로 한쪽으로만 음식을 씹나요?</legend><div class="choices"></div></fieldset>
+            <fieldset class="q freq" data-name="chewy" data-summary="질긴 음식 선호"><legend>17. 껌·오징어처럼 질긴 음식을 자주 먹나요?</legend><div class="choices"></div></fieldset>
+            <fieldset class="q yn" data-name="trauma" data-summary="턱 외상 경험" data-yes="2"><legend>18. 턱에 외상이나 큰 충격을 받은 적이 있나요?</legend><div class="choices"></div></fieldset>
+            <fieldset class="q yn" data-name="history" data-summary="턱 통증 치료 경험" data-yes="1"><legend>19. 턱·얼굴 통증으로 치료를 받은 적이 있나요?</legend><div class="choices"></div></fieldset>
+            <fieldset class="q yn" data-name="meds" data-summary="통증약 복용 중" data-yes="2"><legend>20. 현재 턱·얼굴 통증 때문에 약을 복용 중인가요?</legend><div class="choices"></div></fieldset>
+            <fieldset class="q freq" data-name="appetite" data-summary="통증으로 인한 식욕 저하"><legend>21. 통증이나 불편감 때문에 식사가 힘든가요?</legend><div class="choices"></div></fieldset>
+            <div class="q">
+              <label class="q-title" for="extra-note">22. 그 밖에 의료진에게 알리고 싶은 내용이 있나요? <span class="opt-label">선택</span></label>
+              <textarea id="extra-note" rows="3" placeholder="증상이 심해지는 상황이나 궁금한 점을 자유롭게 적어주세요."></textarea>
+            </div>
+          </section>
+
+          <div class="submit-wrap">
+            <p id="form-msg" class="form-msg" aria-live="polite"></p>
+            <button class="btn btn-primary" type="submit">내 턱관절 상태 확인하기</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== 결과 ===== -->
+      <section id="result-view" hidden>
+        <div id="result-level" class="result-level">
+          <span class="lv-badge" id="lv-badge"></span>
+          <h2 id="lv-title"></h2>
+          <p id="lv-desc"></p>
+          <div class="score-wrap">
+            <div class="score-track"><div id="score-fill" class="score-fill"></div></div>
+            <div class="score-nums"><span>양호</span><span id="score-pct"></span><span>심함</span></div>
+          </div>
+        </div>
+
+        <div id="redflag-box" class="redflag-box" hidden></div>
+
+        <div class="result-card">
+          <h3>주요 증상 요약</h3>
+          <ul id="key-symptoms" class="symptom-list"></ul>
+        </div>
+
+        <div class="result-card">
+          <h3>지금 도움이 되는 관리 방법</h3>
+          <ul id="advice" class="advice-list"></ul>
+        </div>
+
+        <div class="cta-card">
+          <span class="gold">정확한 진단, 바른 치료</span>
+          <h3>이음턱편한치과</h3>
+          <p id="cta-msg">턱관절 전문 클리닉 — 3D-CT와 초음파 정밀 검사로 원인부터 확인합니다.</p>
+          <a class="tel" href="tel:02-6745-2754" id="cta-tel">02-6745-2754 전화 상담</a>
+          <p class="cta-sub">월·화·수·금 09:30–18:00 · 토 09:30–13:00 (목·일 휴진)<br />
+            서울 관악구 은천로 169, 1층 · <a href="index.html#location">오시는 길 보기</a></p>
+        </div>
+
+        <div class="check-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01"/><path d="M11 12h1v4h1"/></svg>
+          <span>이 결과는 답변을 바탕으로 한 참고 정보이며 의학적 진단이 아닙니다. 결과 화면을 인쇄하거나 캡처해서 내원 시 보여주시면 진료에 도움이 됩니다.</span>
+        </div>
+
+        <div class="result-actions">
+          <button id="edit-btn" class="btn btn-outline" type="button">답변 수정하기</button>
+          <button id="print-btn" class="btn btn-primary" type="button">결과 인쇄·저장</button>
+          <button id="reset-btn" class="btn btn-outline" type="button">처음부터 다시</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ===== 푸터 ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="f-logo">이음턱편한치과</div>
+          <p>대표자: 최문호<br />
+            주소: 서울 관악구 은천로 169, 1층 | 전화: 02-6745-2754<br />
+            사업자등록번호: 760-46-00304</p>
+        </div>
+        <div>
+          <p><a href="doctor.html">의료진 소개</a><br />
+            <a href="tmj.html">턱관절 클리닉</a><br />
+            <a href="https://blog.naver.com/eumdentalclinic" target="_blank" rel="noopener">네이버 블로그</a><br />
+            <a href="index.html#location">오시는 길</a></p>
+        </div>
+      </div>
+      <p class="copyright">© 2026 이음턱편한치과. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- 모바일 하단 고정 상담바 -->
+  <div class="quickbar"><a href="tel:02-6745-2754"><svg class="ic-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v2a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1A19.5 19.5 0 0 1 5.2 11.8 19.8 19.8 0 0 1 2.1 3.2 2 2 0 0 1 4.1 1h2a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L7.2 8.8a16 16 0 0 0 8 8l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg> 전화 상담 예약 02-6745-2754</a></div>
+
+  <script>
+  (function () {
+    var FREQ = [['없음',0],['가끔',1],['자주',2],['거의 항상',3]];
+    var YN = [['아니오',0],['예',null]]; // 예 점수는 data-yes
+
+    // 빈도/예아니오 선택지 자동 생성
+    document.querySelectorAll('.q.freq').forEach(function (fs) {
+      var name = fs.dataset.name, box = fs.querySelector('.choices');
+      FREQ.forEach(function (o) {
+        box.insertAdjacentHTML('beforeend',
+          '<label class="choice"><input type="radio" name="' + name + '" value="' + o[0] + '" data-score="' + o[1] + '" /><span>' + o[0] + '</span></label>');
+      });
+    });
+    document.querySelectorAll('.q.yn').forEach(function (fs) {
+      var name = fs.dataset.name, yes = fs.dataset.yes || 1, box = fs.querySelector('.choices');
+      box.insertAdjacentHTML('beforeend',
+        '<label class="choice"><input type="radio" name="' + name + '" value="아니오" data-score="0" /><span>아니오</span></label>' +
+        '<label class="choice"><input type="radio" name="' + name + '" value="예" data-score="' + yes + '" /><span>예</span></label>');
+    });
+
+    var form = document.getElementById('tmj-form');
+    var radioGroups = Array.prototype.slice.call(form.querySelectorAll('fieldset.q[data-name]:not([data-multi])'));
+    var painSlider = document.getElementById('jaw-pain');
+    var painOut = document.getElementById('pain-out');
+
+    painSlider.addEventListener('input', function () { painOut.textContent = painSlider.value; });
+
+    // 진행률
+    function updateProgress() {
+      var done = radioGroups.filter(function (fs) {
+        return fs.querySelector('input:checked');
+      }).length;
+      var pct = Math.round(done / radioGroups.length * 100);
+      document.getElementById('progress-bar').style.width = pct + '%';
+      document.getElementById('progress-value').textContent = pct + '% 완료';
+    }
+    form.addEventListener('change', function (e) {
+      updateProgress();
+      // "해당 없음" 배타 처리
+      if (e.target.name === 'painArea') {
+        var none = form.querySelector('input[name="painArea"][data-none]');
+        if (e.target === none && none.checked) {
+          form.querySelectorAll('input[name="painArea"]').forEach(function (c) { if (c !== none) c.checked = false; });
+        } else if (e.target.checked) {
+          none.checked = false;
+        }
+      }
+    });
+
+    // 제출 → 채점
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var msg = document.getElementById('form-msg');
+      var missing = radioGroups.filter(function (fs) { return !fs.querySelector('input:checked'); });
+      radioGroups.forEach(function (fs) { fs.classList.remove('unanswered'); });
+      if (missing.length) {
+        missing.forEach(function (fs) { fs.classList.add('unanswered'); });
+        msg.textContent = '아직 답하지 않은 질문이 ' + missing.length + '개 있어요. 빨간색 질문을 확인해 주세요.';
+        missing[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      msg.textContent = '';
+
+      var score = 0, max = 0, redflag = false;
+      var keySymptoms = [];
+
+      radioGroups.forEach(function (fs) {
+        var checked = fs.querySelector('input:checked');
+        var w = parseFloat(fs.dataset.weight || 1);
+        var s = parseFloat(checked.dataset.score || 0) * w;
+        var groupMax = Math.max.apply(null, Array.prototype.map.call(
+          fs.querySelectorAll('input'), function (i) { return parseFloat(i.dataset.score || 0); })) * w;
+        score += s; max += groupMax;
+        if (fs.dataset.redflag && parseFloat(checked.dataset.score || 0) >= parseFloat(fs.dataset.redflag)) redflag = true;
+        if (s > 0 && fs.dataset.summary) {
+          keySymptoms.push({ label: fs.dataset.summary, value: checked.value, heavy: parseFloat(checked.dataset.score) >= 2 });
+        }
+      });
+
+      // 통증 슬라이더 (0~10)
+      var pain = parseInt(painSlider.value, 10);
+      score += pain; max += 10;
+      if (pain >= 7) redflag = true;
+      if (pain > 0) keySymptoms.unshift({ label: '턱 통증 정도', value: pain + ' / 10', heavy: pain >= 5 });
+
+      // 통증 부위 (부위당 1점, 최대 5)
+      var areas = Array.prototype.map.call(
+        form.querySelectorAll('input[name="painArea"]:checked:not([data-none])'),
+        function (c) { return c.value; });
+      score += areas.length; max += 5;
+      if (areas.length) keySymptoms.push({ label: '통증·불편 부위', value: areas.join(', '), heavy: areas.length >= 3 });
+
+      var pct = Math.round(score / max * 100);
+
+      // 단계 판정
+      var level;
+      if (pct < 18 && !redflag) level = 1;
+      else if (pct < 38 && !redflag) level = 2;
+      else if (pct < 62) level = 3;
+      else level = 4;
+      if (redflag && level < 3) level = 3;
+
+      var LV = {
+        1: { badge: '1단계 · 양호', title: '현재는 비교적 양호한 상태로 보입니다',
+             desc: '답변 기준으로는 뚜렷한 턱관절 장애 소견이 낮습니다. 다만 턱에 부담을 주는 습관은 미리 관리하는 것이 좋습니다.',
+             cta: '불편감이 새로 생기거나 2주 이상 지속되면 편하게 상담해 주세요.' },
+        2: { badge: '2단계 · 주의', title: '가벼운 턱관절 증상이 의심됩니다',
+             desc: '초기 단계로 보입니다. 이 시기는 생활습관 관리로 좋아질 수 있는 때이지만, 증상이 2주 이상 지속되거나 심해지면 진료를 받아보시길 권합니다.',
+             cta: '초기일수록 간단한 치료로 회복이 빠릅니다. 정확한 상태 확인을 원하시면 연락 주세요.' },
+        3: { badge: '3단계 · 진료 권장', title: '턱관절 장애 가능성이 있어 진료를 권합니다',
+             desc: '답변하신 증상들은 턱관절 장애에서 흔히 나타나는 소견입니다. 정확한 원인 확인을 위해 정밀 검사를 받아보시길 권합니다.',
+             cta: '3D-CT·초음파 정밀 검사로 원인을 확인하고 치료 방향을 안내해 드립니다.' },
+        4: { badge: '4단계 · 빠른 진료 권장', title: '증상이 상당히 진행된 것으로 보입니다',
+             desc: '통증이나 기능 제한이 큰 상태로 보입니다. 방치하면 만성화될 수 있으니 가급적 빠른 시일 내에 진료를 받아보시길 권합니다.',
+             cta: '빠른 진료가 필요한 상태로 보입니다. 지금 바로 전화 주시면 가까운 예약 일정을 안내해 드립니다.' }
+      };
+      var lv = LV[level];
+
+      // 결과 렌더링
+      document.getElementById('survey-view').hidden = true;
+      var rv = document.getElementById('result-view');
+      rv.hidden = false;
+      var box = document.getElementById('result-level');
+      box.className = 'result-level lv-' + level;
+      document.getElementById('lv-badge').textContent = lv.badge;
+      document.getElementById('lv-title').textContent = lv.title;
+      document.getElementById('lv-desc').textContent = lv.desc;
+      document.getElementById('score-pct').textContent = '증상 지수 ' + pct + '%';
+      document.getElementById('cta-msg').textContent = lv.cta;
+
+      var rf = document.getElementById('redflag-box');
+      if (redflag) {
+        rf.hidden = false;
+        rf.textContent = '⚠ 입이 잘 벌어지지 않거나 턱이 잠기는 증상, 심한 통증은 조기 진료가 특히 중요한 신호입니다.';
+      } else { rf.hidden = true; }
+
+      // 주요 증상
+      var list = document.getElementById('key-symptoms');
+      list.innerHTML = '';
+      if (!keySymptoms.length) {
+        list.innerHTML = '<li><span>특별히 두드러진 증상이 선택되지 않았습니다.</span></li>';
+      } else {
+        keySymptoms.slice(0, 10).forEach(function (s) {
+          var li = document.createElement('li');
+          if (s.heavy) li.className = 'warn';
+          li.innerHTML = '<span>' + s.label + '</span><span class="sv">' + s.value + '</span>';
+          list.appendChild(li);
+        });
+      }
+
+      // 관리 방법 (답변 기반 맞춤)
+      var advice = [];
+      function freqVal(name) {
+        var c = form.querySelector('input[name="' + name + '"]:checked');
+        return c ? parseFloat(c.dataset.score || 0) : 0;
+      }
+      if (freqVal('clench') >= 1) advice.push('낮에 이가 맞닿아 있다면 "입술은 닫고 치아는 띄우기"를 의식적으로 연습해 보세요.');
+      if (freqVal('grind') >= 1) advice.push('수면 중 이갈이는 스스로 조절이 어려워 맞춤 장치(스플린트)가 도움이 될 수 있습니다.');
+      if (freqVal('oneside') >= 1) advice.push('음식은 가능한 양쪽으로 번갈아 씹는 습관을 들여보세요.');
+      if (freqVal('chewy') >= 1) advice.push('당분간 껌, 오징어 같은 질긴 음식과 크게 베어 무는 음식은 피하는 것이 좋습니다.');
+      if (pain >= 3) advice.push('통증이 있을 때는 무리하게 입을 크게 벌리지 말고, 따뜻한 찜질이 도움이 됩니다.');
+      advice.push('턱 괴기, 한쪽으로 자기, 장시간 고개 숙인 자세는 턱관절에 부담을 줍니다.');
+      advice.push('하품할 때는 턱 아래를 가볍게 받쳐 과도하게 벌어지지 않게 해주세요.');
+      var adv = document.getElementById('advice');
+      adv.innerHTML = advice.map(function (a) { return '<li>' + a + '</li>'; }).join('');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // GA 이벤트
+      if (typeof gtag === 'function') {
+        gtag('event', 'tmj_check_complete', { level: level, score_pct: pct });
+      }
+    });
+
+    // 결과 화면 버튼
+    document.getElementById('edit-btn').addEventListener('click', function () {
+      document.getElementById('result-view').hidden = true;
+      document.getElementById('survey-view').hidden = false;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    document.getElementById('print-btn').addEventListener('click', function () { window.print(); });
+    document.getElementById('reset-btn').addEventListener('click', function () {
+      form.reset(); painOut.textContent = '0'; updateProgress();
+      document.getElementById('result-view').hidden = true;
+      document.getElementById('survey-view').hidden = false;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+  </script>
+  <script src="js/main.js" defer></script>
+
+</body>
+</html>
