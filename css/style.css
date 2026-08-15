@@ -229,6 +229,80 @@ a { color: inherit; text-decoration: none; }
 /* ---------- 블로그/칼럼 ---------- */
 .blog-cta {
   text-align: center; margin-top: 40px;
+  display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+}
+
+/* ============================================
+   건강 칼럼 페이지 (column.html) — 진료실 문답
+   질문 하나를 추가할 때 손댈 곳은 column.html뿐입니다.
+   이 블록은 색·간격만 조정하시면 됩니다.
+   ============================================ */
+.qa-cream { background: #faf7f1; }   /* 히어로 배경 (따뜻한 크림) */
+
+/* 히어로 — 왼쪽 제목, 오른쪽 원장 사진 */
+.qa-hero { padding: 92px 0 84px; }
+.qa-hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: center; }
+.qa-eyebrow {
+  display: inline-block; font-size: .74rem; font-weight: 800; letter-spacing: .18em;
+  color: var(--primary); text-transform: uppercase; margin-bottom: 20px;
+}
+.qa-hero h1 { font-size: 3.1rem; font-weight: 800; letter-spacing: -.035em; line-height: 1.22; }
+.qa-hero h1 em { font-style: normal; color: var(--primary); }
+.qa-hero .qa-lede { margin-top: 22px; font-size: 1.06rem; color: var(--text-light); line-height: 1.85; max-width: 30em; }
+.qa-portrait { position: relative; margin: 0; }
+.qa-portrait img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: 50% 50%; border-radius: 20px; }
+/* 이름표는 사진 위에 얹지 않고 사진 아래에 둡니다.
+   사진 위에 올리면 화면 폭에 따라 글자가 얼굴이나 목에 걸립니다. */
+.qa-portrait figcaption { margin-top: 18px; padding-left: 2px; }
+.qa-portrait figcaption b { font-size: 1.18rem; font-weight: 800; letter-spacing: -.02em; }
+/* 이름은 의료진 소개로 가는 링크입니다. 모바일에는 마우스오버가 없어서 밑줄을 늘 보여 줍니다. */
+.qa-portrait figcaption a { border-bottom: 1px solid rgba(26,107,138,.35); padding-bottom: 1px; }
+.qa-portrait figcaption a:hover { border-bottom-color: var(--primary); }
+.qa-portrait figcaption a:hover b { color: var(--primary); }
+.qa-portrait figcaption span {
+  display: block; margin-top: 7px;
+  font-size: .95rem; font-weight: 500; color: #5c6b78; line-height: 1.6;
+}
+
+/* 문답 목록 */
+.qa-list { max-width: 800px; margin: 0 auto; padding: 84px 0 20px; }
+.qa-item { padding: 40px 0; border-top: 1px solid var(--border); scroll-margin-top: 96px; }
+.qa-item:first-child { border-top: 0; padding-top: 8px; }
+.qa-tag {
+  display: inline-block; font-size: .76rem; font-weight: 800; letter-spacing: .1em;
+  color: var(--primary); background: var(--primary-light);
+  border-radius: 999px; padding: 5px 12px; margin-bottom: 16px;
+}
+.qa-q { font-size: 1.62rem; font-weight: 700; letter-spacing: -.028em; line-height: 1.45; }
+
+/* 답 — 원장 사진이 답변 왼쪽에 붙습니다.
+   세로선을 함께 두면 동그란 사진이 막대사탕처럼 보여서 선은 쓰지 않습니다. */
+.qa-a { position: relative; margin: 24px 0 0 20px; padding-left: 62px; }
+.qa-avatar {
+  position: absolute; left: 0; top: 2px; width: 44px; height: 44px; border-radius: 50%;
+  object-fit: cover; background: var(--primary-light);
+}
+.qa-a p { font-size: 1.07rem; line-height: 1.9; color: #3d4b57; }
+.qa-more { margin-top: 16px; }
+.qa-more a {
+  font-size: .94rem; font-weight: 700; color: var(--primary);
+  border-bottom: 1px solid rgba(26,107,138,.35); padding-bottom: 2px;
+}
+.qa-more a:hover { border-color: var(--primary); }
+
+.qa-foot { max-width: 800px; margin: 0 auto; padding: 20px 0 96px; }
+
+@media (max-width: 860px) {
+  .qa-hero { padding: 56px 0 52px; }
+  .qa-hero .container { grid-template-columns: 1fr; gap: 34px; }
+  .qa-hero h1 { font-size: 2.15rem; }
+  .qa-portrait img { aspect-ratio: 4/3; object-position: 50% 50%; }
+  .qa-portrait figcaption b { font-size: 1.1rem; }
+  .qa-portrait figcaption span { font-size: .9rem; }
+  .qa-list { padding: 52px 0 12px; }
+  .qa-q { font-size: 1.28rem; }
+  .qa-a { margin-left: 0; padding-left: 50px; }
+  .qa-avatar { width: 38px; height: 38px; left: 0; }
 }
 
 /* ---------- FAQ (tmj.html) ---------- */
