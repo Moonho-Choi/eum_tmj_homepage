@@ -266,6 +266,8 @@ a { color: inherit; text-decoration: none; }
 
 /* 문답 목록 */
 .qa-list { max-width: 800px; margin: 0 auto; padding: 84px 0 20px; }
+
+
 .qa-item { padding: 40px 0; border-top: 1px solid var(--border); scroll-margin-top: 96px; }
 .qa-item:first-child { border-top: 0; padding-top: 8px; }
 .qa-tag {
