@@ -155,6 +155,59 @@ a { color: inherit; text-decoration: none; }
 }
 /* 진료 안내 카드: 넓은 화면에서 4장이 한 줄에 들어가도록 최소 폭 축소 */
 #services .card-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+/* 진료 안내 G3안: 연한 톤 — 턱관절 묶음 = 컬러 타일(첫 장 중간 브랜드색) / 일반 진료 = 압축 가로 카드 */
+#services .card-grid { gap: 18px; }
+#services .svc-tmj .card {
+  position: relative; overflow: hidden; border: 1px solid rgba(26,107,138,0.18); border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(15,76,99,0.04), 0 8px 22px rgba(15,76,99,0.07),
+              inset 0 1px 0 rgba(255,255,255,0.8);
+}
+#services .svc-tmj .card::before {           /* 모서리의 부드러운 광원 */
+  content: ""; position: absolute; right: -46px; top: -46px; width: 150px; height: 150px;
+  border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.3) 55%, rgba(255,255,255,0) 72%);
+}
+#services .svc-tmj .card .icon {
+  position: relative; background: #fff; border-radius: 50%;
+  box-shadow: 0 5px 14px rgba(15,76,99,0.12), inset 0 -2px 0 rgba(15,76,99,0.05);
+}
+/* 1번: 중간 톤 브랜드색 — 시선의 닻(이전보다 밝게) */
+#services .svc-tmj .card:nth-child(1) {
+  background: linear-gradient(150deg, #2b7f9c 0%, #3a97a4 55%, #4fae9f 100%); color: #fff;
+  border-color: #24728c;
+  box-shadow: 0 1px 2px rgba(15,76,99,0.12), 0 12px 28px rgba(26,107,138,0.24);
+}
+#services .svc-tmj .card:nth-child(1)::before { background: radial-gradient(circle, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.12) 55%, rgba(255,255,255,0) 72%); }
+#services .svc-tmj .card:nth-child(1) h3 { color: #fff; }
+#services .svc-tmj .card:nth-child(1) p { color: rgba(255,255,255,0.9); }
+#services .svc-tmj .card:nth-child(1) .icon { background: rgba(255,255,255,0.18); color: #fff;
+  box-shadow: 0 5px 14px rgba(0,0,0,0.12), inset 0 0 0 1px rgba(255,255,255,0.4); }
+#services .svc-tmj .card:nth-child(1) .more { color: #fff; border-bottom: 2px solid rgba(255,255,255,0.55); padding-bottom: 2px; }
+/* 2~4번: 세이지 · 하늘 · 회청 */
+#services .svc-tmj .card:nth-child(2) { background: linear-gradient(160deg, #f3faf6, #e6f2ec); border-color: #bfdccf; }
+#services .svc-tmj .card:nth-child(2) .icon { color: #2f8f7d; }
+#services .svc-tmj .card:nth-child(3) { background: linear-gradient(160deg, #f1f7fb, #e2eef6); border-color: #bcd5e5; }
+#services .svc-tmj .card:nth-child(3) .icon { color: #1a6b8a; }
+#services .svc-tmj .card:nth-child(4) { background: linear-gradient(160deg, #f3f5f9, #e6eaf1); border-color: #c3cbd8; }
+#services .svc-tmj .card:nth-child(4) .icon { color: #5b7086; }
+/* 일반 진료: 흰 가로 카드 + 연한 컬러 아이콘 칩 */
+#services .svc-general { grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); }
+#services .svc-general .card {
+  display: grid; grid-template-columns: 46px 1fr; column-gap: 16px; align-items: start;
+  padding: 20px 22px; border: 1px solid #cfd8e3;
+  box-shadow: 0 1px 2px rgba(15,76,99,0.03), 0 5px 16px rgba(15,76,99,0.05);
+}
+#services .svc-general .card .icon { width: 46px; height: 46px; margin: 0; grid-row: 1 / span 2; border-radius: 13px;
+  box-shadow: inset 0 -2px 0 rgba(15,76,99,0.05); }
+#services .svc-general .card .icon svg { width: 22px; height: 22px; }
+#services .svc-general .card:nth-child(1) .icon { background: #e6f2f6; color: #1a6b8a; }
+#services .svc-general .card:nth-child(2) .icon { background: #e8f5ef; color: #2f8f7d; }
+#services .svc-general .card:nth-child(3) .icon { background: #eaeef4; color: #5b7086; }
+#services .svc-general .card:nth-child(4) .icon { background: #eceefc; color: var(--brand-blue); }
+#services .svc-general .card h3 { font-size: 1.02rem; margin-bottom: 4px; }
+#services .svc-general .card p { font-size: 0.9rem; line-height: 1.6; }
+
 /* 진료 안내 그룹 소제목 (턱관절 중심 진료 / 일반 진료) */
 .svc-group {
   display: flex; align-items: center; gap: 12px;
