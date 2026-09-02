@@ -379,7 +379,7 @@ a { color: inherit; text-decoration: none; }
 .qa-hero h1 em { font-style: normal; color: var(--primary); }
 .qa-hero .qa-lede { margin-top: 22px; font-size: 1.06rem; color: var(--text-light); line-height: 1.85; max-width: 30em; }
 .qa-portrait { position: relative; margin: 0; }
-.qa-portrait img { width: 100%; aspect-ratio: 3/2; object-fit: cover; object-position: 50% 50%; border-radius: 20px; }
+.qa-portrait img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: 50% 50%; border-radius: 20px; }
 /* 이름표는 사진 위에 얹지 않고 사진 아래에 둡니다.
    사진 위에 올리면 화면 폭에 따라 글자가 얼굴이나 목에 걸립니다. */
 .qa-portrait figcaption { margin-top: 18px; padding-left: 2px; }
@@ -427,7 +427,7 @@ a { color: inherit; text-decoration: none; }
   .qa-hero { padding: 56px 0 52px; }
   .qa-hero .container { grid-template-columns: 1fr; gap: 34px; }
   .qa-hero h1 { font-size: 2.15rem; }
-  .qa-portrait img { aspect-ratio: 3/2; object-position: 50% 50%; }
+  .qa-portrait img { aspect-ratio: 4/3; object-position: 50% 50%; }
   .qa-portrait figcaption b { font-size: 1.1rem; }
   .qa-portrait figcaption span { font-size: .9rem; }
   .qa-list { padding: 52px 0 12px; }
