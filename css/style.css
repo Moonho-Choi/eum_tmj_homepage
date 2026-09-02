@@ -109,6 +109,16 @@ a { color: inherit; text-decoration: none; }
 .hero .btn-outline { border-color: #fff; color: #fff; }
 .hero .btn-outline:hover { background: rgba(255,255,255,0.15); }
 .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+/* 히어로 하단 턱 건강 칼럼 버튼 — 메인 CTA보다 한 단계 은은하게 */
+.hero-column-link {
+  display: inline-block; margin-top: 18px;
+  padding: 10px 22px; border-radius: 999px;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.55);
+  color: #fff; font-weight: 600; font-size: 0.95rem;
+  transition: background 0.2s;
+}
+.hero-column-link:hover { background: rgba(255,255,255,0.3); }
 .btn {
   display: inline-block; padding: 14px 30px; border-radius: 999px;
   font-weight: 700; font-size: 1rem; transition: all 0.2s;
