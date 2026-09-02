@@ -153,6 +153,16 @@ a { color: inherit; text-decoration: none; }
   display: grid; gap: 24px;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
+/* 진료 안내 카드: 넓은 화면에서 4장이 한 줄에 들어가도록 최소 폭 축소 */
+#services .card-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+/* 진료 안내 그룹 소제목 (턱관절 중심 진료 / 일반 진료) */
+.svc-group {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 1.05rem; font-weight: 700; color: var(--primary-dark);
+  margin: 40px 0 18px;
+}
+.svc-group:first-of-type { margin-top: 0; }
+.svc-group::after { content: ""; flex: 1; height: 1px; background: var(--border); }
 .card {
   background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
   padding: 32px 28px; transition: box-shadow 0.25s, transform 0.25s;
@@ -255,6 +265,42 @@ a { color: inherit; text-decoration: none; }
   .map-static { height: 300px; }
   .map-actions .btn { flex: 1 1 auto; text-align: center; }
 }
+
+/* ---------- 턱관절 클리닉 페이지 전용 (tmj.html) ---------- */
+/* 장애란: 증상 카드 — 중앙정렬 + 원형 아이콘, 아이콘은 천천히 맥동(불편감 상징) */
+.about-tmj .card { text-align: center; background: #f2f8fa; border: none; }
+.about-tmj .card .icon {
+  position: relative;
+  width: 68px; height: 68px; border-radius: 50%; margin: 0 auto 18px;
+  background: #fff; box-shadow: 0 4px 14px rgba(15,76,99,0.12);
+}
+.about-tmj .card .icon svg { width: 30px; height: 30px; }
+.about-tmj .card h3 { color: var(--primary-dark); }
+@media (prefers-reduced-motion: no-preference) {
+  .about-tmj .card .icon { animation: symptomPulse 3s ease-in-out infinite; }
+  .about-tmj .card .icon::after {
+    content: ""; position: absolute; inset: 0; border-radius: 50%;
+    border: 2px solid rgba(26,107,138,0.35);
+    animation: symptomRing 3s ease-out infinite;
+  }
+  .about-tmj .card:nth-child(2) .icon, .about-tmj .card:nth-child(2) .icon::after { animation-delay: 0.6s; }
+  .about-tmj .card:nth-child(3) .icon, .about-tmj .card:nth-child(3) .icon::after { animation-delay: 1.2s; }
+}
+@keyframes symptomPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); box-shadow: 0 6px 20px rgba(15,76,99,0.2); }
+}
+@keyframes symptomRing {
+  0% { transform: scale(1); opacity: 0.6; }
+  70%, 100% { transform: scale(1.55); opacity: 0; }
+}
+
+/* 치료 방법: 두 톤 타일 — 테두리 없이 배경색 교차 */
+.treat .card-grid { gap: 16px; }
+.treat .card { border: none; border-radius: 18px; }
+.treat .card:nth-child(odd) { background: #eef6f4; }
+.treat .card:nth-child(even) { background: #eaf3f7; }
+.treat .card .icon { background: #fff; border-radius: 50%; box-shadow: 0 3px 10px rgba(15,76,99,0.1); }
 
 /* ---------- 블로그/칼럼 ---------- */
 .blog-cta {
