@@ -61,10 +61,10 @@
     groups.set(parent, n + 1);
   });
 
-  // 진료 안내 카드는 오른쪽 카드부터 순서대로 (오른쪽 → 왼쪽 물결)
+  // 진료 안내 카드는 첫 카드부터 왼쪽 → 오른쪽, 짧은 간격 (묶음마다 새로 시작)
   var svcCards = document.querySelectorAll('#services .card');
   svcCards.forEach(function (el, i) {
-    el.style.setProperty('--d', ((svcCards.length - 1 - i) * 0.16) + 's');
+    el.style.setProperty('--d', ((i % 4) * 0.07) + 's');
   });
 
   var observer = new IntersectionObserver(function (entries) {
@@ -74,7 +74,7 @@
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.05, rootMargin: '0px 0px 0px 0px' });
 
   document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
 })();
