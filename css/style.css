@@ -200,9 +200,12 @@ a { color: inherit; text-decoration: none; }
 #services .svc-general .card:nth-child(4) .icon { background: #eceefc; color: var(--brand-blue); }
 #services .svc-general .card h3 { font-size: 1.02rem; margin-bottom: 4px; }
 #services .svc-general .card p { font-size: 0.9rem; line-height: 1.6; }
-/* 진료 안내 카드는 등장을 짧고 가볍게 (이동 거리·시간 축소) */
-body.fx #services .reveal { transition-duration: 0.5s, 0.55s; }
-body.fx #services .fx-right { transform: translateX(28px); }
+/* 진료 안내 카드: 아래에서 떠오르며 살짝 커졌다가 통, 하고 안착 (스프링) */
+body.fx .fx-pop { transform: translateY(26px) scale(0.94); }
+body.fx #services .reveal {
+  transition: opacity 0.35s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s;
+  transition-delay: var(--d, 0s), var(--d, 0s), 0s;
+}
 
 /* 진료 안내 그룹 소제목 (턱관절 중심 진료 / 일반 진료) */
 .svc-group {

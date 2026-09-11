@@ -43,7 +43,7 @@
   // 1-b) 카드: 진료 안내(#services)는 오른쪽에서 미끄러져 들어옴, 나머지는 떠오름
   document.querySelectorAll('.card').forEach(function (el) {
     if (el.closest(EXCLUDE)) return;
-    el.classList.add('reveal', el.closest('#services') ? 'fx-right' : 'fx-up');
+    el.classList.add('reveal', el.closest('#services') ? 'fx-pop' : 'fx-up');
   });
 
   // 2) 사진 줌아웃 — 갤러리, 인물/병원 사진
