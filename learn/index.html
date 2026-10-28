@@ -40,6 +40,9 @@
 
     /* ---- 움직이는 도해 뷰어 ---- */
     .jaw-wrap { max-width: 760px; margin: 0 auto; }
+    .jaw-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+    .jaw-sub { font-size: 1.05rem; font-weight: 800; text-align: center; margin-bottom: 10px; }
+    @media (max-width: 860px) { .jaw-duo { grid-template-columns: 1fr; } }
     .jaw-viewer { position: relative; width: 100%; aspect-ratio: 3 / 2; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--border); background: #fff; }
     .jaw-stage { position: absolute; left: 0; top: 0; width: 1536px; height: 1024px; transform-origin: 0 0; }
     .jaw-stage img { position: absolute; }
@@ -128,16 +131,28 @@
   <section class="learn-section">
     <div class="container">
       <h2>턱관절은 어떻게 움직일까요?</h2>
-      <p class="sec-sub">자동으로 재생됩니다. 손잡이를 끌면 원하는 순간에 멈춰서 볼 수 있습니다.</p>
-      <div class="jaw-wrap">
-        <div class="jaw-viewer" id="jawView" aria-label="턱관절 개구 움직임 도해"></div>
-        <div class="jaw-bar">
-          <button type="button" id="jawPlay" class="on">⏸ 자동</button>
-          <input type="range" id="jawSlider" min="0" max="1000" value="0" aria-label="입 벌림 정도 조절" />
+      <p class="sec-sub">정상 개구와 소리가 나는 턱을 나란히 비교해 보세요. 자동으로 재생되고, 손잡이를 끌면 원하는 순간에 멈춰서 볼 수 있습니다.</p>
+      <div class="jaw-duo">
+        <div>
+          <h3 class="jaw-sub">정상 개구</h3>
+          <div class="jaw-viewer" id="jawView" aria-label="정상 개구 움직임 도해"></div>
+          <div class="jaw-bar">
+            <button type="button" id="jawPlay" class="on">⏸ 자동</button>
+            <input type="range" id="jawSlider" min="0" max="1000" value="0" aria-label="입 벌림 정도 조절" />
+          </div>
+          <p class="jaw-cap" id="jawCap"></p>
         </div>
-        <p class="jaw-cap" id="jawCap"></p>
-        <p class="motion-note">파란 회색 띠가 관절원판(디스크)입니다. 입을 크게 벌릴 때 디스크와 턱뼈 머리가 함께 언덕(관절융기)의 비탈을 타고 내려옵니다. 소리가 나는 턱의 움직임은 <a href="sound.html" style="color:var(--primary);font-weight:700">턱 소리 페이지</a>에서 볼 수 있습니다.</p>
+        <div>
+          <h3 class="jaw-sub">소리가 나는 턱</h3>
+          <div class="jaw-viewer" id="jawViewB" aria-label="소리 나는 턱 움직임 도해"></div>
+          <div class="jaw-bar">
+            <button type="button" id="jawPlayB" class="on">⏸ 자동</button>
+            <input type="range" id="jawSliderB" min="0" max="1000" value="0" aria-label="입 벌림 정도 조절" />
+          </div>
+          <p class="jaw-cap" id="jawCapB"></p>
+        </div>
       </div>
+      <p class="motion-note" style="text-align:center">파란 회색 띠가 관절원판(디스크), 빨간색이 앞으로 밀려난 디스크입니다. 소리가 나는 턱의 자세한 설명은 <a href="sound.html" style="color:var(--primary);font-weight:700">턱 소리 페이지</a>에 있습니다.</p>
     </div>
   </section>
 
@@ -285,7 +300,10 @@
   <div class="quickbar"><a href="tel:02-6745-2754"><svg class="ic-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v2a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1A19.5 19.5 0 0 1 5.2 11.8 19.8 19.8 0 0 1 2.1 3.2 2 2 0 0 1 4.1 1h2a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L7.2 8.8a16 16 0 0 0 8 8l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg> 전화 상담 예약 02-6745-2754</a></div>
 
   <script src="jaw-motion.js"></script>
-  <script>initJawViewer({ viewer: "jawView", play: "jawPlay", slider: "jawSlider", cap: "jawCap", click: false });</script>
+  <script>
+    initJawViewer({ viewer: "jawView", play: "jawPlay", slider: "jawSlider", cap: "jawCap", click: false });
+    initJawViewer({ viewer: "jawViewB", play: "jawPlayB", slider: "jawSliderB", cap: "jawCapB", click: true });
+  </script>
   <script src="../js/main.js" defer></script>
 
 </body>
