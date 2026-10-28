@@ -38,26 +38,21 @@
     .learn-section h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; text-align: center; }
     .learn-section .sec-sub { text-align: center; color: var(--text-light); margin-bottom: 36px; }
 
-    /* ---- 모션 그래픽 ---- */
-    .motion-wrap { display: grid; grid-template-columns: minmax(0,480px) 1fr; gap: 36px; align-items: center; max-width: 920px; margin: 0 auto; }
-    .motion-stage { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background:#fff; aspect-ratio: 1200/1612; }
-    .motion-stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.9s ease; }
-    .motion-stage img.on { opacity: 1; }
-    .focus-ring { position: absolute; width: 17%; aspect-ratio: 1; border: 3px solid var(--accent); border-radius: 50%; box-shadow: 0 0 0 6px rgba(63,167,150,0.18); transition: left 0.9s ease, top 0.9s ease; animation: ringPulse 1.6s ease-in-out infinite; pointer-events: none; }
-    @keyframes ringPulse { 0%,100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.12); opacity: 0.55; } }
-    .motion-side h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 10px; }
-    .motion-caption { min-height: 96px; }
-    .motion-caption .step-name { display: inline-block; background: var(--primary-light); color: var(--primary-dark); font-weight: 700; font-size: 0.85rem; padding: 4px 12px; border-radius: 999px; margin-bottom: 8px; }
-    .motion-caption p { color: var(--text); }
-    .motion-controls { display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
-    .motion-controls button {
-      font: inherit; font-weight: 700; font-size: 0.9rem; cursor: pointer;
-      padding: 9px 16px; border-radius: 999px; border: 1.5px solid var(--border);
-      background: #fff; color: var(--text-light); transition: all 0.2s;
-    }
-    .motion-controls button.cur { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
-    .motion-controls button.play-btn { border-color: var(--primary); color: #fff; background: var(--primary); }
-    .motion-note { margin-top: 14px; font-size: 0.85rem; color: var(--text-light); }
+    /* ---- 움직이는 도해 뷰어 ---- */
+    .jaw-wrap { max-width: 760px; margin: 0 auto; }
+    .jaw-viewer { position: relative; width: 100%; aspect-ratio: 3 / 2; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--border); background: #fff; }
+    .jaw-stage { position: absolute; left: 0; top: 0; width: 1536px; height: 1024px; transform-origin: 0 0; }
+    .jaw-stage img { position: absolute; }
+    .jm-flash { position: absolute; z-index: 5; width: 220px; height: 220px; border: 10px solid #c2572b; border-radius: 50%; opacity: 0; }
+    .jm-label { position: absolute; z-index: 5; font-weight: 900; font-size: 72px; color: #c2572b; background: rgba(255,255,255,0.92); border: 4px solid #c2572b; border-radius: 20px; padding: 10px 28px; opacity: 0; transform: rotate(-6deg); }
+    .jm-legend { position: absolute; z-index: 5; left: 24px; top: 20px; font-size: 30px; font-weight: 700; color: #c2572b; background: rgba(255,255,255,0.85); border-radius: 12px; padding: 8px 16px; }
+    .jaw-bar { display: flex; gap: 10px; align-items: center; margin-top: 14px; flex-wrap: wrap; }
+    .jaw-bar button { font: inherit; font-weight: 700; padding: 8px 16px; border-radius: 999px; border: 1.5px solid var(--border); background: #fff; cursor: pointer; color: var(--text-light); }
+    .jaw-bar button.on { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+    .jaw-bar input[type=range] { flex: 1; min-width: 180px; accent-color: var(--primary); }
+    .jaw-cap { margin-top: 10px; min-height: 48px; }
+    .jaw-cap b { color: var(--primary-dark); }
+    .motion-note { margin-top: 10px; font-size: 0.85rem; color: var(--text-light); }
 
     /* ---- 구조 그림 ---- */
     .structure-fig { max-width: 820px; margin: 0 auto; }
@@ -129,31 +124,19 @@
     </div>
   </section>
 
-  <!-- ===== 턱관절은 어떻게 움직이나 (모션) ===== -->
+  <!-- ===== 턱관절은 어떻게 움직이나 (움직이는 도해) ===== -->
   <section class="learn-section">
     <div class="container">
       <h2>턱관절은 어떻게 움직일까요?</h2>
-      <p class="sec-sub">입을 벌리는 동작은 한 가지가 아니라 두 단계로 일어납니다.</p>
-
-      <div class="motion-wrap">
-        <div class="motion-stage" id="motionStage" aria-label="턱관절 개구 2단계 도해">
-          <img src="img/open-stage1.jpg" alt="1단계 회전 — 입을 조금 벌릴 때의 턱관절 단면" class="on" />
-          <img src="img/open-stage2.jpg" alt="2단계 활주 — 입을 크게 벌릴 때의 턱관절 단면" />
-          <div class="focus-ring" id="focusRing" style="left: 34%; top: 30%;"></div>
+      <p class="sec-sub">자동으로 재생됩니다. 손잡이를 끌면 원하는 순간에 멈춰서 볼 수 있습니다.</p>
+      <div class="jaw-wrap">
+        <div class="jaw-viewer" id="jawView" aria-label="턱관절 개구 움직임 도해"></div>
+        <div class="jaw-bar">
+          <button type="button" id="jawPlay" class="on">⏸ 자동</button>
+          <input type="range" id="jawSlider" min="0" max="1000" value="0" aria-label="입 벌림 정도 조절" />
         </div>
-        <div class="motion-side">
-          <h3>입을 벌리는 두 단계</h3>
-          <div class="motion-caption" id="motionCaption">
-            <span class="step-name">1단계 · 제자리 회전</span>
-            <p>입을 조금 벌릴 때는 턱뼈의 둥근 머리(하악 과두)가 제자리에서 문의 경첩처럼 돌기만 합니다.</p>
-          </div>
-          <div class="motion-controls">
-            <button type="button" id="btnStage1" class="cur">1단계 회전</button>
-            <button type="button" id="btnStage2">2단계 활주</button>
-            <button type="button" id="btnPlay" class="play-btn">⏸ 자동 재생 중</button>
-          </div>
-          <p class="motion-note">파란 회색 띠가 관절원판(디스크)입니다. 턱뼈 머리가 미끄러질 때 디스크가 함께 따라가며 뼈끼리 닿지 않게 받쳐 줍니다.</p>
-        </div>
+        <p class="jaw-cap" id="jawCap"></p>
+        <p class="motion-note">파란 회색 띠가 관절원판(디스크)입니다. 입을 크게 벌릴 때 디스크와 턱뼈 머리가 함께 언덕(관절융기)의 비탈을 타고 내려옵니다. 소리가 나는 턱의 움직임은 <a href="sound.html" style="color:var(--primary);font-weight:700">턱 소리 페이지</a>에서 볼 수 있습니다.</p>
       </div>
     </div>
   </section>
@@ -301,68 +284,8 @@
   <!-- 모바일 하단 고정 상담바 -->
   <div class="quickbar"><a href="tel:02-6745-2754"><svg class="ic-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v2a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1A19.5 19.5 0 0 1 5.2 11.8 19.8 19.8 0 0 1 2.1 3.2 2 2 0 0 1 4.1 1h2a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L7.2 8.8a16 16 0 0 0 8 8l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg> 전화 상담 예약 02-6745-2754</a></div>
 
-  <script>
-    (function () {
-      var imgs = document.querySelectorAll("#motionStage img");
-      var ring = document.getElementById("focusRing");
-      var caption = document.getElementById("motionCaption");
-      var b1 = document.getElementById("btnStage1");
-      var b2 = document.getElementById("btnStage2");
-      var bp = document.getElementById("btnPlay");
-
-      var stages = [
-        {
-          name: "1단계 · 제자리 회전",
-          text: "입을 조금 벌릴 때는 턱뼈의 둥근 머리(하악 과두)가 제자리에서 문의 경첩처럼 돌기만 합니다.",
-          ring: { left: "34%", top: "30%" }
-        },
-        {
-          name: "2단계 · 앞으로 미끄러짐(활주)",
-          text: "입을 크게 벌리면 턱뼈 머리가 디스크와 함께 언덕(관절융기)을 타고 앞으로 미끄러져 내려옵니다. 이 미끄러짐이 매끄럽지 않으면 소리나 통증이 생깁니다.",
-          ring: { left: "50%", top: "36%" }
-        }
-      ];
-
-      var cur = 0;
-      var playing = true;
-      var timer = null;
-
-      function show(i) {
-        cur = i;
-        imgs[0].classList.toggle("on", i === 0);
-        imgs[1].classList.toggle("on", i === 1);
-        ring.style.left = stages[i].ring.left;
-        ring.style.top = stages[i].ring.top;
-        caption.innerHTML =
-          '<span class="step-name">' + stages[i].name + "</span><p>" + stages[i].text + "</p>";
-        b1.classList.toggle("cur", i === 0);
-        b2.classList.toggle("cur", i === 1);
-      }
-
-      function startAuto() {
-        stopAuto();
-        timer = setInterval(function () { show(cur === 0 ? 1 : 0); }, 3400);
-        playing = true;
-        bp.textContent = "⏸ 자동 재생 중";
-      }
-      function stopAuto() {
-        if (timer) clearInterval(timer);
-        timer = null;
-      }
-      function pauseAuto() {
-        stopAuto();
-        playing = false;
-        bp.textContent = "▶ 자동 재생";
-      }
-
-      b1.addEventListener("click", function () { pauseAuto(); show(0); });
-      b2.addEventListener("click", function () { pauseAuto(); show(1); });
-      bp.addEventListener("click", function () { playing ? pauseAuto() : startAuto(); });
-
-      show(0);
-      startAuto();
-    })();
-  </script>
+  <script src="jaw-motion.js"></script>
+  <script>initJawViewer({ viewer: "jawView", play: "jawPlay", slider: "jawSlider", cap: "jawCap", click: false });</script>
   <script src="../js/main.js" defer></script>
 
 </body>
