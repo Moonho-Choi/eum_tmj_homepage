@@ -56,16 +56,17 @@ a { color: inherit; text-decoration: none; }
   height: 36px; width: auto; display: block;
   max-width: min(60vw, 380px); object-fit: contain;
 }
-.main-nav { display: flex; gap: 22px; align-items: center; flex-shrink: 0; }
+.main-nav { display: flex; gap: 13px; align-items: center; flex-shrink: 0; }
 .main-nav a {
-  font-size: 0.95rem; font-weight: 600; color: var(--text-light);
+  font-size: 0.9rem; font-weight: 600; color: var(--text-light);
   transition: color 0.2s;
   white-space: nowrap; /* 메뉴는 항상 한 줄 유지 */
 }
 .main-nav a:hover, .main-nav a.active { color: var(--primary); }
 .nav-cta {
   background: var(--primary); color: #fff !important;
-  padding: 9px 18px; border-radius: 999px; font-weight: 700;
+  padding: 6px 13px; border-radius: 999px; font-weight: 700;
+  font-size: 0.86rem;
   transition: background 0.2s;
 }
 .nav-cta:hover { background: var(--primary-dark); }
@@ -822,7 +823,7 @@ body.fx #services .reveal {
     border-radius: 0; white-space: nowrap;
   }
   .main-nav a.active { background: var(--primary-light); color: var(--primary); font-weight: 800; }
-  .main-nav a.nav-cta { background: var(--primary); color: #fff; font-weight: 800; grid-column: span 2; }
+  .main-nav a.nav-cta { background: var(--primary); color: #fff; font-weight: 800; }
   .main-nav a.nav-cta .ic-inline { display: none; }
   .menu-toggle { display: none; }
 }
