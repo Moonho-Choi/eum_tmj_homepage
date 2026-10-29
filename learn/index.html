@@ -64,7 +64,7 @@
     /* ---- 증상 카드 (사진형) ---- */
     .symptom-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
     .symptom-card {
-      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      position: relative; background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
       overflow: hidden; display: flex; flex-direction: column;
       transition: box-shadow 0.25s, transform 0.25s;
     }
@@ -77,6 +77,7 @@
       font-weight: 800; font-size: 1.02rem; color: var(--text);
     }
     .symptom-card:hover .card-label { color: var(--primary); }
+    .card-badge { position: absolute; z-index: 2; top: 10px; right: 10px; background: var(--primary); color: #fff; font-size: 0.74rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
 
     .learn-cta { text-align: center; background: var(--primary-light); border-radius: var(--radius); padding: 40px 24px; }
     .learn-cta p { margin-bottom: 18px; color: var(--text); }
@@ -207,7 +208,8 @@
         </a>
 
         <a class="symptom-card" href="asymmetry.html">
-          <div class="card-photo"><img src="img/cards/card-asym.jpg" alt="거울로 얼굴을 살펴보는 여성" loading="lazy" /></div>
+          <span class="card-badge">치료 전후 사례</span>
+          <div class="card-photo"><img src="img/cards/card-asym.jpg" alt="정면 얼굴" loading="lazy" /></div>
           <div class="card-label">안면비대칭</div>
         </a>
 

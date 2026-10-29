@@ -131,13 +131,14 @@
     .jaw-note { text-align: center; color: var(--text-light); font-size: 0.9rem; margin-top: 16px; }
     .jaw-note a { color: var(--primary); font-weight: 700; }
     .symptom-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-    .symptom-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; transition: box-shadow 0.25s, transform 0.25s; }
+    .symptom-card { position: relative; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; transition: box-shadow 0.25s, transform 0.25s; }
     .symptom-card:hover { box-shadow: 0 12px 28px rgba(15,76,99,0.14); transform: translateY(-3px); }
     .symptom-card .card-photo { aspect-ratio: 3 / 2; overflow: hidden; }
     .symptom-card .card-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
     .symptom-card:hover .card-photo img { transform: scale(1.04); }
     .symptom-card .card-label { padding: 13px 8px; text-align: center; font-weight: 800; font-size: 1.02rem; color: var(--text); }
     .symptom-card:hover .card-label { color: var(--primary); }
+    .card-badge { position: absolute; z-index: 2; top: 10px; right: 10px; background: var(--primary); color: #fff; font-size: 0.74rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
     .treat-cta { background: var(--primary-light); border-radius: var(--radius); padding: 38px 24px; text-align: center; }
     .treat-cta p { color: var(--text); font-weight: 600; }
     .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
@@ -255,6 +256,7 @@
         </a>
 
         <a class="symptom-card" href="learn/asymmetry.html">
+          <span class="card-badge">치료 전후 사례</span>
           <div class="card-photo"><img src="learn/img/cards/card-asym.jpg" alt="정면 얼굴" loading="lazy" /></div>
           <div class="card-label">안면비대칭</div>
         </a>
@@ -275,6 +277,7 @@
         <p>턱관절 치료는 되돌릴 수 있는 보존적 치료부터 단계적으로 진행합니다.</p>
         <div class="cta-btns">
           <a class="btn-fill" href="learn/treatment.html">치료 안내 보기</a>
+          <a class="btn-line" href="learn/asymmetry.html#case">비대칭 치료 전후 사례</a>
           <a class="btn-line" href="learn/index.html">턱관절 알아보기</a>
         </div>
       </div>
@@ -407,31 +410,6 @@
           <p>충분한 상담을 통해 환자 개개인에게 맞는 치료 계획을 세우고,
             검사 결과를 충분히 설명드린 후 치료 방향을 함께 결정합니다.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 치료 전후 사례 (사진이 없으면 자동으로 숨겨집니다) ===== -->
-  <section class="section" id="cases" hidden>
-    <div class="container">
-      <div class="section-title">
-        <span class="label">Before &amp; After</span>
-        <h2>치료 사례 — 비대칭 개선</h2>
-        <p>치아보철과 부분교정을 함께 진행하여 비대칭을 개선한 사례입니다.<br />
-          가운데 손잡이를 좌우로 움직여 치료 전과 후를 비교해 보세요.</p>
-      </div>
-      <div class="ba-slider" id="baSlider">
-        <img class="ba-after" src="images/case-after.jpg" alt="치료 후" />
-        <div class="ba-before-wrap" id="baBeforeWrap">
-          <img class="ba-before" src="images/case-before.jpg" alt="치료 전" />
-        </div>
-        <div class="ba-handle" id="baHandle"></div>
-        <span class="ba-label before">치료 전</span>
-        <span class="ba-label after">치료 후</span>
-      </div>
-      <p class="ba-note">※ 약 6개월 치료 전후 사진 (동일 조건 촬영) · 본원의 실제 치료 사례이며, 치료 결과는 개인에 따라 다를 수 있습니다.</p>
-      <div class="blog-cta">
-        <a href="https://blog.naver.com/eumdentalclinic/223941340397" target="_blank" rel="noopener" class="btn btn-outline">이 치료 이야기 자세히 보기 →</a>
       </div>
     </div>
   </section>
@@ -738,69 +716,6 @@
     initJawViewer({ viewer: "jawViewB", play: "jawPlayB", slider: "jawSliderB", cap: "jawCapB", click: true });
   </script>
   <script src="js/main.js" defer></script>
-  <!-- 치료 전후 슬라이더 동작 -->
-  <script>
-  (function () {
-    var section = document.getElementById('cases');
-    var slider = document.getElementById('baSlider');
-    if (!section || !slider) return;
-    var beforeImg = slider.querySelector('.ba-before');
-    var afterImg = slider.querySelector('.ba-after');
-    var wrap = document.getElementById('baBeforeWrap');
-    var handle = document.getElementById('baHandle');
-
-    // 두 사진이 모두 있으면 섹션을 표시
-    function ready(img, cb) {
-      if (img.complete) { cb(img.naturalWidth > 0); }
-      else { img.onload = function () { cb(true); }; img.onerror = function () { cb(false); }; }
-    }
-    ready(beforeImg, function (ok1) {
-      ready(afterImg, function (ok2) {
-        if (ok1 && ok2) { section.hidden = false; init(); }
-      });
-    });
-
-    var pos = 50, userTouched = false;
-    function render() {
-      wrap.style.clipPath = 'inset(0 ' + (100 - pos) + '% 0 0)';
-      handle.style.left = pos + '%';
-    }
-    function setFromEvent(e) {
-      var rect = slider.getBoundingClientRect();
-      var x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
-      pos = Math.max(3, Math.min(97, x / rect.width * 100));
-      render();
-    }
-    function init() {
-      render();
-      var dragging = false;
-      slider.addEventListener('pointerdown', function (e) { dragging = true; userTouched = true; setFromEvent(e); });
-      window.addEventListener('pointermove', function (e) { if (dragging) setFromEvent(e); });
-      window.addEventListener('pointerup', function () { dragging = false; });
-
-      // 처음 화면에 나타나면 자동으로 좌우로 한 번 움직여 변화를 보여줌
-      var observer = new IntersectionObserver(function (entries) {
-        if (entries[0].isIntersecting) { observer.disconnect(); animate(); }
-      }, { threshold: 0.5 });
-      observer.observe(slider);
-
-      function animate() {
-        var start = null, dur = 2600;
-        function step(t) {
-          if (userTouched) return; // 사용자가 만지면 자동 동작 중단
-          if (!start) start = t;
-          var p = Math.min((t - start) / dur, 1);
-          // 50 → 15 → 85 → 50 곡선으로 이동
-          var angle = p * Math.PI * 2;
-          pos = 50 - Math.sin(angle) * 35;
-          render();
-          if (p < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-      }
-    }
-  })();
-  </script>
 
 </body>
 </html>
