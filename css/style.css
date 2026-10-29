@@ -858,3 +858,11 @@ body.fx #services .reveal {
 .footer-blog .nb { width: 20px; height: 20px; border-radius: 4px; background: #03c75a;
   display: inline-flex; align-items: center; justify-content: center; flex: 0 0 20px; }
 .footer-blog .nb svg { width: 11px; height: 11px; fill: #fff; }
+
+
+/* ---------- 진료·치료 카드 실사 사진 ---------- */
+.tcard-photo { aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
+.tcard-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+#services .svc-general .card:has(.gcard-photo) { grid-template-columns: 112px 1fr; }
+.gcard-photo { width: 112px; aspect-ratio: 4 / 3; border-radius: 10px; overflow: hidden; grid-row: 1 / span 2; }
+.gcard-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
