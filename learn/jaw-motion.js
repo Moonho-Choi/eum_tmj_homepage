@@ -2,9 +2,10 @@
    initJawViewer({viewer, play, slider, cap, click})
    click:false = 정상 개구 / click:true = 소리 나는 턱(밀려난 디스크 → '딱') */
 (function () {
+  var BASE = window.JAW_ASSET_BASE || "";
   var GEO = {
-    bone: { left: 399, top: 392, ox: 256, oy: 206, src: "img/motion/bone.webp", w: 1077 },
-    disc: { left: 388, top: 302, ox: 267, oy: 296, src: "img/motion/disc.webp", w: 779 },
+    bone: { left: 399, top: 392, ox: 256, oy: 206, src: BASE + "img/motion/bone.webp", w: 1077 },
+    disc: { left: 388, top: 302, ox: 267, oy: 296, src: BASE + "img/motion/disc.webp", w: 779 },
     end: { tx: 235, ty: 165, rot: 16, ddx: -60, ddy: 0, drot: -16 }
   };
   var SNAP_T = 0.52;
@@ -16,11 +17,11 @@
     var stage = document.createElement("div");
     stage.className = "jaw-stage";
     stage.innerHTML =
-      '<img src="img/motion/bg-plate.jpg" style="left:0;top:0;width:1536px" alt="턱관절 단면 배경">' +
+      '<img src="' + BASE + 'img/motion/bg-plate.jpg" style="left:0;top:0;width:1536px" alt="턱관절 단면 배경">' +
       '<img class="jm-disc" src="' + GEO.disc.src + '" style="left:' + GEO.disc.left + 'px;top:' + GEO.disc.top + 'px;width:' + GEO.disc.w + 'px;transform-origin:' + GEO.disc.ox + 'px ' + GEO.disc.oy + 'px" alt="관절원판(디스크)">' +
       '<img class="jm-bone" src="' + GEO.bone.src + '" style="z-index:2;left:' + GEO.bone.left + 'px;top:' + GEO.bone.top + 'px;width:' + GEO.bone.w + 'px;transform-origin:' + GEO.bone.ox + 'px ' + GEO.bone.oy + 'px" alt="아래턱뼈(과두)">' +
-      '<img src="img/motion/eminence.webp" style="z-index:4;left:835px;top:245px;width:701px" alt="">' +
-      (opts.click ? '<img class="jm-disc2" src="img/motion/disc-displaced.webp" style="z-index:3;left:509px;top:255px;width:649px;opacity:0" alt="앞으로 밀려난 디스크">' : "") +
+      '<img src="' + BASE + 'img/motion/eminence.webp" style="z-index:4;left:835px;top:245px;width:701px" alt="">' +
+      (opts.click ? '<img class="jm-disc2" src="' + BASE + 'img/motion/disc-displaced.webp" style="z-index:3;left:509px;top:255px;width:649px;opacity:0" alt="앞으로 밀려난 디스크">' : "") +
       '<div class="jm-flash"></div><div class="jm-label">딱!</div>' +
       (opts.click ? '<div class="jm-legend">빨간색 = 밀려난 디스크</div>' : "");
     root.appendChild(stage);
