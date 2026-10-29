@@ -63,7 +63,7 @@
     .structure-fig figcaption { text-align: center; color: var(--text-light); font-size: 0.9rem; margin-top: 12px; }
 
     /* ---- 증상 카드 (사진형) ---- */
-    .symptom-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .symptom-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
     .symptom-card {
       background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
       overflow: hidden; display: flex; flex-direction: column;
@@ -73,11 +73,11 @@
     .symptom-card .card-photo { aspect-ratio: 3 / 2; overflow: hidden; }
     .symptom-card .card-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
     .symptom-card:hover .card-photo img { transform: scale(1.04); }
-    .symptom-card .card-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 7px; flex: 1; }
-    .symptom-card .cat { font-size: 0.78rem; font-weight: 800; color: var(--accent); letter-spacing: 0.04em; }
-    .symptom-card h3 { font-size: 1.08rem; font-weight: 800; line-height: 1.4; }
-    .symptom-card p { font-size: 0.89rem; color: var(--text-light); flex: 1; }
-    .symptom-card .go { font-size: 0.86rem; font-weight: 700; color: var(--primary); }
+    .symptom-card .card-label {
+      padding: 13px 8px; text-align: center;
+      font-weight: 800; font-size: 1.02rem; color: var(--text);
+    }
+    .symptom-card:hover .card-label { color: var(--primary); }
 
     .learn-cta { text-align: center; background: var(--primary-light); border-radius: var(--radius); padding: 40px 24px; }
     .learn-cta p { margin-bottom: 18px; color: var(--text); }
@@ -92,7 +92,8 @@
       .motion-stage { max-width: 420px; margin: 0 auto; width: 100%; }
     }
     @media (max-width: 480px) {
-      .symptom-grid { grid-template-columns: 1fr; }
+      .symptom-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .symptom-card .card-label { font-size: 0.92rem; padding: 10px 6px; }
     }
   </style>
 </head>
@@ -171,89 +172,49 @@
   <!-- ===== 증상에서 찾아보기 ===== -->
   <section class="learn-section">
     <div class="container">
-      <h2>증상에서 찾아보기</h2>
-      <p class="sec-sub">지금 불편한 증상을 고르면 해당 설명으로 이동합니다.</p>
+      <h2>턱관절 연관 증상</h2>
+      <p class="sec-sub">증상을 누르면 설명으로 이동합니다.</p>
 
       <div class="symptom-grid">
 
         <a class="symptom-card" href="ear.html">
           <div class="card-photo"><img src="img/cards/card-ear.jpg" alt="귀 앞을 짚고 있는 여성" loading="lazy" /></div>
-          <div class="card-body">
-            <span class="cat">귀 증상</span>
-            <h3>귀가 먹먹하고 이명이 들려요</h3>
-            <p>귀 검사는 정상인데 먹먹함과 '삐—' 소리가 계속될 때, 귀 바로 앞의 턱관절을 살펴봅니다.</p>
-            <span class="go">자세히 보기 →</span>
-          </div>
+          <div class="card-label">이명 · 귀 먹먹함</div>
         </a>
 
         <a class="symptom-card" href="headache.html">
-          <div class="card-photo"><img src="img/cards/card-headache.jpg" alt="책상 앞에서 관자놀이를 짚은 여성" loading="lazy" /></div>
-          <div class="card-body">
-            <span class="cat">두통 · 얼굴 통증</span>
-            <h3>두통이 자주 있어요</h3>
-            <p>관자놀이가 지끈거리는 두통이 반복된다면, 씹는 근육이 보내는 통증일 수 있습니다.</p>
-            <span class="go">자세히 보기 →</span>
-          </div>
+          <div class="card-photo"><img src="img/cards/card-headache.jpg" alt="관자놀이를 짚은 여성" loading="lazy" /></div>
+          <div class="card-label">두통</div>
         </a>
 
         <a class="symptom-card" href="sound.html">
-          <div class="card-photo"><img src="img/cards/card-sound.jpg" alt="턱에 손을 대고 걱정하는 여성" loading="lazy" /></div>
-          <div class="card-body">
-            <span class="cat">턱 소리 · 걸림</span>
-            <h3>턱에서 딱딱 소리가 나요</h3>
-            <p>입을 벌리거나 다물 때 딱딱, 사각 소리가 난다면 디스크의 움직임을 확인해 봅니다.</p>
-            <span class="go">자세히 보기 →</span>
-          </div>
+          <div class="card-photo"><img src="img/cards/card-sound.jpg" alt="턱에 손을 댄 여성" loading="lazy" /></div>
+          <div class="card-label">턱 소리</div>
         </a>
 
         <a class="symptom-card" href="lock.html">
           <div class="card-photo"><img src="img/cards/card-lock.jpg" alt="턱에 붕대를 감은 남성" loading="lazy" /></div>
-          <div class="card-body">
-            <span class="cat">응급</span>
-            <h3>턱이 빠지거나 입이 안 벌어져요</h3>
-            <p>갑자기 입이 안 다물어지거나 안 벌어질 때, 당장 해야 할 일과 하면 안 되는 일이 있습니다.</p>
-            <span class="go">자세히 보기 →</span>
-          </div>
+          <div class="card-label">개구 제한 · 턱 빠짐</div>
         </a>
 
         <a class="symptom-card" href="morning.html">
-          <div class="card-photo"><img src="img/cards/card-morning.jpg" alt="아침 침대에서 턱을 짚은 여성의 뒷모습" loading="lazy" /></div>
-          <div class="card-body">
-            <span class="cat">이갈이 · 수면</span>
-            <h3>아침에 일어나면 턱이 뻐근해요</h3>
-            <p>자는 동안의 이갈이와 이 악물기는 체중만큼의 힘으로 턱을 누릅니다.</p>
-            <span class="go">자세히 보기 →</span>
-          </div>
+          <div class="card-photo"><img src="img/cards/card-morning.jpg" alt="아침 침대에서 턱을 짚은 여성" loading="lazy" /></div>
+          <div class="card-label">이갈이 · 아침 턱 통증</div>
         </a>
 
         <a class="symptom-card" href="neck.html">
           <div class="card-photo"><img src="img/cards/card-neck.jpg" alt="목덜미를 잡고 있는 사람" loading="lazy" /></div>
-          <div class="card-body">
-            <span class="cat">목 · 어깨</span>
-            <h3>목과 어깨까지 결려요</h3>
-            <p>턱과 목의 근육은 한 팀으로 움직입니다. 목·어깨 결림이 턱에서 시작되기도 합니다.</p>
-            <span class="go">자세히 보기 →</span>
-          </div>
+          <div class="card-label">목 · 어깨 결림</div>
         </a>
 
         <a class="symptom-card" href="asymmetry.html">
           <div class="card-photo"><img src="img/cards/card-asym.jpg" alt="거울로 얼굴을 살펴보는 여성" loading="lazy" /></div>
-          <div class="card-body">
-            <span class="cat">얼굴 모양</span>
-            <h3>얼굴이 점점 틀어지는 것 같아요</h3>
-            <p>안면비대칭이 신경 쓰인다면 턱의 움직임과 맞물림부터 확인해 봅니다.</p>
-            <span class="go">자세히 보기 →</span>
-          </div>
+          <div class="card-label">안면비대칭</div>
         </a>
 
         <a class="symptom-card" href="chronic.html">
-          <div class="card-photo"><img src="img/cards/card-chronic.jpg" alt="치과 진료실에서 엑스레이 화면을 보는 환자" loading="lazy" /></div>
-          <div class="card-body">
-            <span class="cat">만성 통증</span>
-            <h3>검사는 정상인데 계속 아파요</h3>
-            <p>사진에는 이상이 없다는데 통증이 이어진다면, 예민해진 신경을 함께 봐야 합니다.</p>
-            <span class="go">자세히 보기 →</span>
-          </div>
+          <div class="card-photo"><img src="img/cards/card-chronic.jpg" alt="치과 진료실의 환자" loading="lazy" /></div>
+          <div class="card-label">만성 통증</div>
         </a>
 
       </div>
