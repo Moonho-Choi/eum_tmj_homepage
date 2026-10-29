@@ -843,3 +843,18 @@ body.fx #services .reveal {
   .quickbar { display: block; }
   body { padding-bottom: 56px; } /* 하단 상담바 공간 확보 */
 }
+
+
+/* ---------- 정보관(learn) 꼬리말: 지도 + 블로그 단추 ---------- */
+.footer-map { max-width: 720px; margin: 0 auto 30px; }
+.footer-map .map-static { height: 240px; border-radius: 12px; overflow: hidden; }
+.footer-blog {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  margin-top: 14px; padding: 12px 18px; border-radius: 999px;
+  background: rgba(255,255,255,0.08); color: #fff; font-weight: 700; font-size: 0.95rem;
+  transition: background 0.2s;
+}
+.footer-blog:hover { background: rgba(255,255,255,0.16); }
+.footer-blog .nb { width: 20px; height: 20px; border-radius: 4px; background: #03c75a;
+  display: inline-flex; align-items: center; justify-content: center; flex: 0 0 20px; }
+.footer-blog .nb svg { width: 11px; height: 11px; fill: #fff; }
