@@ -117,4 +117,90 @@
     });
     render(0); tick();
   };
+
+  /* ── 안면비대칭 뷰어: 밀린 턱 → 검사선 → 바른 턱 ─────────────── */
+  window.initAsymViewer = function (opts) {
+    var root = document.getElementById(opts.viewer);
+    var stage = document.createElement("div");
+    stage.className = "asym-stage";
+    stage.innerHTML =
+      '<img class="af-normal" src="' + BASE + 'img/motion/asym-normal.jpg" alt="바른 턱 위치의 정면 얼굴">' +
+      '<img class="af-shifted" src="' + BASE + 'img/motion/asym-shifted.jpg" alt="아래턱이 한쪽으로 밀린 정면 얼굴">' +
+      '<div class="ag ag-mid"></div>' +
+      '<div class="ag ag-eye"></div>' +
+      '<div class="ag ag-mouth"></div>' +
+      '<div class="ag ag-gap"></div>' +
+      '<div class="ag ag-dot"></div>';
+    root.appendChild(stage);
+    var S = 764;
+    var shifted = stage.querySelector(".af-shifted");
+    var mid = stage.querySelector(".ag-mid"), eye = stage.querySelector(".ag-eye");
+    var mouth = stage.querySelector(".ag-mouth"), dot = stage.querySelector(".ag-dot"), gap = stage.querySelector(".ag-gap");
+    // 기준점 (764 정사각 좌표)
+    var MX = 364, EY = 325, MOUTH = { x1: 283, y1: 568, x2: 458, y2: 560 };
+    var CHIN_S = { x: 390, y: 707 }, CHIN_N = { x: 366, y: 722 };
+    mid.style.cssText = "left:" + (MX-1) + "px;top:56px;width:0;height:688px;border-left:3px dashed rgba(26,107,138,0.85);transform-origin:top;";
+    eye.style.cssText = "left:222px;top:" + EY + "px;width:286px;height:3px;background:rgba(26,107,138,0.8);transform-origin:left;";
+    var mw = Math.hypot(MOUTH.x2-MOUTH.x1, MOUTH.y2-MOUTH.y1);
+    var tiltDeg = Math.atan2(MOUTH.y2-MOUTH.y1, MOUTH.x2-MOUTH.x1) * 180/Math.PI;
+    mouth.style.cssText = "left:" + MOUTH.x1 + "px;top:" + MOUTH.y1 + "px;width:" + mw + "px;height:3px;background:rgba(194,87,43,0.9);transform-origin:left;";
+    dot.style.cssText = "width:18px;height:18px;border-radius:50%;background:#c2572b;border:3px solid #fff;box-shadow:0 0 0 2px #c2572b;";
+    gap.style.cssText = "top:" + (CHIN_S.y+7) + "px;height:3px;background:#c2572b;";
+    function fit(){ stage.style.transform = "scale(" + root.clientWidth / S + ")"; }
+    new ResizeObserver(fit).observe(root); fit();
+    function seg(t,a,b){ return Math.max(0, Math.min(1,(t-a)/(b-a))); }
+    function render(t){
+      var pMid = seg(t,0.12,0.30), pEye = seg(t,0.30,0.45), pMouth = seg(t,0.45,0.60);
+      var pDot = seg(t,0.60,0.72), pFix = easeInOut(seg(t,0.74,0.95));
+      shifted.style.opacity = 1 - pFix;
+      mid.style.transform = "scaleY(" + pMid + ")"; mid.style.width = pMid>0 ? "0" : "0";
+      mid.style.opacity = pMid>0 ? 1 : 0;
+      eye.style.transform = "scaleX(" + pEye + ")"; eye.style.opacity = pEye>0 ? 1 : 0;
+      var rot = tiltDeg * (1 - pFix);
+      mouth.style.transform = "scaleX(" + pMouth + ") rotate(" + rot + "deg)";
+      mouth.style.opacity = pMouth>0 ? 1 : 0;
+      mouth.style.background = pFix>0.5 ? "rgba(26,107,138,0.85)" : "rgba(194,87,43,0.9)";
+      var cx = CHIN_S.x + (CHIN_N.x? (MX - CHIN_S.x) * pFix : 0);
+      var cy = CHIN_S.y + (CHIN_N.y - CHIN_S.y) * pFix;
+      dot.style.left = (cx-9) + "px"; dot.style.top = (cy-9) + "px";
+      dot.style.opacity = pDot>0 ? 1 : 0;
+      dot.style.background = pFix>0.5 ? "#1a6b8a" : "#c2572b";
+      dot.style.boxShadow = "0 0 0 2px " + (pFix>0.5 ? "#1a6b8a" : "#c2572b");
+      var gl = Math.min(MX, cx), gw = Math.abs(cx - MX) * (pDot>0 ? 1 : 0) * (1-pFix);
+      gap.style.left = gl + "px"; gap.style.width = gw + "px"; gap.style.opacity = pDot>0 && pFix<0.9 ? 1 : 0;
+      var capEl = document.getElementById(opts.cap);
+      if (t < 0.12) capEl.innerHTML = "<b>비대칭 턱</b> — 아래턱이 한쪽으로 밀린 상태입니다.";
+      else if (t < 0.30) capEl.innerHTML = "<b>정중선</b> — 미간을 지나는 세로 기준선을 그어 봅니다.";
+      else if (t < 0.45) capEl.innerHTML = "<b>눈높이</b> — 눈은 수평입니다.";
+      else if (t < 0.60) capEl.innerHTML = "<b>입꼬리</b> — 입꼬리 선이 살짝 기울어져 있습니다.";
+      else if (t < 0.74) capEl.innerHTML = "<b>턱끝</b> — 턱끝이 정중선에서 벗어나 있습니다.";
+      else capEl.innerHTML = "<b>맞물림을 바로잡으면</b> — 아래턱이 제자리를 찾고 턱끝이 정중선으로 돌아옵니다.";
+    }
+    var playing = true, t = 0, hold = 0;
+    var slider = document.getElementById(opts.slider), btn = document.getElementById(opts.play);
+    function tick(){
+      if (playing){
+        if (hold > 0) hold--;
+        else {
+          t += 0.002;
+          if (t >= 1){ t = 1; hold = 90; }
+          if (hold === 90 && t >= 1){ /* 끝에서 멈춘 뒤 처음으로 */ }
+        }
+        if (hold === 1 && t >= 1){ t = 0; }
+        slider.value = Math.round(t*1000);
+        render(t);
+      }
+      requestAnimationFrame(tick);
+    }
+    slider.addEventListener("input", function(){
+      playing = false; btn.textContent = "▶ 자동"; btn.classList.remove("on");
+      t = +slider.value/1000; render(t);
+    });
+    btn.addEventListener("click", function(){
+      playing = !playing;
+      btn.textContent = playing ? "⏸ 자동" : "▶ 자동";
+      btn.classList.toggle("on", playing);
+    });
+    render(0); tick();
+  };
 })();
