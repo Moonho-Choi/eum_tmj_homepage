@@ -645,11 +645,15 @@ body.fx #services .reveal {
 }
 .quickbar a { color: #fff; display: block; }
 
+/* 메인의 비대칭 도해는 자동 재생만: 조작줄(자동 버튼+슬라이더)은 숨긴다 (알아보기 페이지에는 유지) */
+#cases .jaw-bar { display: none; }
+
 /* ---------- 치료 전후 슬라이더 ---------- */
 .ba-slider {
   position: relative; max-width: 680px; margin: 0 auto;
   border-radius: var(--radius); overflow: hidden; aspect-ratio: 1 / 1;
-  user-select: none; touch-action: none; background: #0a0a0a;
+  /* pan-y: 위아래 끌기는 화면 스크롤로 넘기고, 좌우 끌기만 사진 비교에 사용 */
+  user-select: none; touch-action: pan-y; background: #0a0a0a;
   cursor: ew-resize;
 }
 .ba-slider img {

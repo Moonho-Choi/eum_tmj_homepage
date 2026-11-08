@@ -152,7 +152,7 @@
     /* ===== 턱관절 연관 증상: 증상 지도 ===== */
     .symmap { display: grid; grid-template-columns: minmax(300px, 400px) 1fr; gap: 40px; align-items: center; }
     .symmap-figure { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: #fff; }
-    .symmap-figure img { width: 100%; display: block; }
+    .symmap-figure img { width: 100%; display: block; aspect-ratio: 2 / 3; object-fit: cover; }
     .symmap-glows { position: absolute; inset: 0; pointer-events: none; }
     .symglow { position: absolute; border-radius: 50%;
       background: radial-gradient(ellipse at center, rgba(203, 40, 28, 0.78) 0%, rgba(203, 40, 28, 0.4) 45%, rgba(203, 40, 28, 0) 72%);
@@ -213,11 +213,11 @@
       <nav class="main-nav">
         <a href="#about">병원 소개</a>
         <a href="doctor.html">의료진 소개</a>
-        <a href="#services">진료 안내</a>
         <a href="tmj.html">턱관절 클리닉</a>
         <a href="learn/index.html">턱관절 알아보기</a>
         <a href="column.html">턱 건강 칼럼</a>
-        <a href="#location">오시는 길</a>
+        <a href="#services">진료 과목</a>
+        <a href="#location">진료시간 · 오시는 길</a>
         <a href="tel:02-6745-2754" class="nav-cta"><svg class="ic-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v2a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1A19.5 19.5 0 0 1 5.2 11.8 19.8 19.8 0 0 1 2.1 3.2 2 2 0 0 1 4.1 1h2a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L7.2 8.8a16 16 0 0 0 8 8l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg> 전화 상담</a>
       </nav>
     </div>
@@ -328,7 +328,7 @@
 
 
   <!-- ===== 치료 전후 사례 (사진이 없으면 자동으로 숨겨집니다) ===== -->
-  <section class="section" id="cases" hidden>
+  <section class="section" id="cases">
     <div class="container">
       <div class="section-title">
         <span class="label">Facial Asymmetry</span>
@@ -400,7 +400,7 @@
     <div class="container">
       <div class="section-title">
         <span class="label">Services</span>
-        <h2>진료 안내</h2>
+        <h2>진료 과목</h2>
         <p>턱관절 치료를 중심으로, 구강 건강 전반을 함께 살핍니다.</p>
       </div>
       <h3 class="svc-group">턱관절 중심 진료</h3>
@@ -662,39 +662,6 @@
   </section>
 
   <!-- ===== 건강 칼럼 (블로그 연동) ===== -->
-  <section class="section soft" id="blog">
-    <div class="container">
-      <div class="section-title">
-        <span class="label">Column</span>
-        <h2>턱 건강 칼럼</h2>
-        <p>원장이 직접 쓰는 턱관절 건강 이야기 — 네이버 블로그에서 더 많은 글을 만나보세요.</p>
-      </div>
-      <div class="card-grid">
-        <a class="card" href="column.html#tmj-sound">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
-          <h3>턱에서 소리가 나요, 치료해야 하나요?</h3>
-          <p>턱관절 소리의 원인과 치료가 필요한 경우를 알기 쉽게 설명합니다.</p>
-          <span class="more">건강 칼럼에서 읽기 →</span>
-        </a>
-        <a class="card" href="column.html#tmj-neck">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
-          <h3>목과 어깨 결림이 자꾸 돌아오는데 턱관절과 관련이 있나요?</h3>
-          <p>풀려도 며칠 만에 돌아오는 목·어깨 결림이 턱에서 시작된 문제일 수 있습니다.</p>
-          <span class="more">건강 칼럼에서 읽기 →</span>
-        </a>
-        <a class="card" href="column.html#tmj-focus">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
-          <h3>턱이 오래 아프면 집중력과 기분도 달라지나요?</h3>
-          <p>예민해서 아픈 것이 아니라, 오래 아파서 예민해지는 쪽에 가깝습니다.</p>
-          <span class="more">건강 칼럼에서 읽기 →</span>
-        </a>
-      </div>
-      <div class="blog-cta">
-        <a href="column.html" class="btn btn-primary">건강 칼럼 전체 보기 →</a>
-        <a href="https://blog.naver.com/eumdentalclinic" target="_blank" rel="noopener" class="btn btn-outline">네이버 블로그 전체 글 보기</a>
-      </div>
-    </div>
-  </section>
 
   <!-- ===== 진료시간 · 오시는 길 ===== -->
   <section class="section" id="location">
@@ -817,7 +784,7 @@
     }
     ready(beforeImg, function (ok1) {
       ready(afterImg, function (ok2) {
-        if (ok1 && ok2) { section.hidden = false; init(); }
+        if (ok1 && ok2) { init(); } else { section.hidden = true; }
       });
     });
 

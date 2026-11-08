@@ -78,3 +78,17 @@
 
   document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
 })();
+
+// #구역 링크로 들어온 경우: 그림이 늦게 로드되어 위치가 밀렸을 때 다 불러온 뒤 한 번 다시 맞춘다.
+// (아이폰 사파리는 밀린 위치를 스스로 다시 맞추지 않음. 사용자가 이미 스크롤을 시작했다면 건드리지 않는다.)
+(function () {
+  var touched = false;
+  ['wheel', 'touchstart', 'keydown'].forEach(function (ev) {
+    window.addEventListener(ev, function () { touched = true; }, { passive: true, once: true });
+  });
+  window.addEventListener('load', function () {
+    if (touched || !location.hash) return;
+    var el = document.getElementById(location.hash.slice(1));
+    if (el) el.scrollIntoView();
+  });
+})();
