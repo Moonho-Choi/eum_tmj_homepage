@@ -107,12 +107,12 @@
       requestAnimationFrame(tick);
     }
     slider.addEventListener("input", function () {
-      playing = false; btn.textContent = "▶ 자동"; btn.classList.remove("on");
+      playing = false; btn.textContent = "재생"; btn.classList.remove("on");
       t = +slider.value / 1000; render(t);
     });
     btn.addEventListener("click", function () {
       playing = !playing;
-      btn.textContent = playing ? "⏸ 자동" : "▶ 자동";
+      btn.textContent = playing ? "정지" : "재생";
       btn.classList.toggle("on", playing);
     });
     render(0); tick();
@@ -193,12 +193,12 @@
       requestAnimationFrame(tick);
     }
     slider.addEventListener("input", function(){
-      playing = false; btn.textContent = "▶ 자동"; btn.classList.remove("on");
+      playing = false; btn.textContent = "재생"; btn.classList.remove("on");
       t = +slider.value/1000; render(t);
     });
     btn.addEventListener("click", function(){
       playing = !playing;
-      btn.textContent = playing ? "⏸ 자동" : "▶ 자동";
+      btn.textContent = playing ? "정지" : "재생";
       btn.classList.toggle("on", playing);
     });
     render(0); tick();
