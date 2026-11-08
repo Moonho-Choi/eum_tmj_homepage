@@ -38,6 +38,8 @@ body {
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 .container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
+/* 헤더가 2단으로 길어진 만큼, 페이지 내 이동 시 제목이 가려지지 않게 여백 확보 */
+.section[id] { scroll-margin-top: 64px; }
 
 /* ---------- 헤더 ---------- */
 .site-header {
@@ -46,9 +48,10 @@ a { color: inherit; text-decoration: none; }
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
 }
+/* 2단 구성: 로고를 위 칸 중앙에, 메뉴를 그 바로 아래 중앙에 */
 .header-inner {
-  display: flex; align-items: center; justify-content: space-between;
-  height: 68px;
+  display: flex; flex-direction: column; align-items: center;
+  height: auto; padding-top: 16px;
 }
 /* 로고: 하나의 이미지, 화면이 좁아져도 줄바꿈 없이 축소만 됨 */
 .logo { display: flex; align-items: center; flex-shrink: 0; }
@@ -56,7 +59,10 @@ a { color: inherit; text-decoration: none; }
   height: 36px; width: auto; display: block;
   max-width: min(60vw, 380px); object-fit: contain;
 }
-.main-nav { display: flex; gap: 13px; align-items: center; flex-shrink: 0; }
+.main-nav {
+  display: flex; gap: 18px; align-items: center; justify-content: center;
+  flex-wrap: wrap; margin: 12px 0 14px;
+}
 .main-nav a {
   font-size: 0.9rem; font-weight: 600; color: var(--text-light);
   transition: color 0.2s;
@@ -396,7 +402,7 @@ body.fx #services .reveal {
 .qa-list { max-width: 800px; margin: 0 auto; padding: 84px 0 20px; }
 
 
-.qa-item { padding: 40px 0; border-top: 1px solid var(--border); scroll-margin-top: 96px; }
+.qa-item { padding: 40px 0; border-top: 1px solid var(--border); scroll-margin-top: 150px; }
 .qa-item:first-child { border-top: 0; padding-top: 8px; }
 .qa-tag {
   display: inline-block; font-size: .76rem; font-weight: 800; letter-spacing: .1em;
