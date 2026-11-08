@@ -237,62 +237,6 @@
     </div>
   </section>
 
-  <!-- ===== 움직이는 턱관절 ===== -->
-  <section class="section" id="motion">
-    <div class="container">
-      <div class="section-title">
-        <span class="label">TMJ Motion</span>
-        <h2>턱관절은 어떻게 움직일까요?</h2>
-        <p>정상 개구와 소리가 나는 턱 — 자동으로 재생되고, 손잡이를 끌면 원하는 순간에 멈춰서 볼 수 있습니다.</p>
-      </div>
-      <div class="jaw-duo-main">
-        <div>
-          <h3 class="jaw-sub">정상 개구</h3>
-          <div class="jaw-viewer" id="jawView" aria-label="정상 개구 움직임 도해"></div>
-          <div class="jaw-bar"><button type="button" id="jawPlay" class="on">⏸ 자동</button><input type="range" id="jawSlider" min="0" max="1000" value="0" aria-label="입 벌림 정도 조절" /></div>
-          <p class="jaw-cap" id="jawCap"></p>
-        </div>
-        <div>
-          <h3 class="jaw-sub">소리가 나는 턱</h3>
-          <div class="jaw-viewer" id="jawViewB" aria-label="소리 나는 턱 움직임 도해"></div>
-          <div class="jaw-bar"><button type="button" id="jawPlayB" class="on">⏸ 자동</button><input type="range" id="jawSliderB" min="0" max="1000" value="0" aria-label="입 벌림 정도 조절" /></div>
-          <p class="jaw-cap" id="jawCapB"></p>
-        </div>
-      </div>
-      <p class="jaw-note">파란 회색 띠가 관절원판(디스크), 빨간색이 앞으로 밀려난 디스크입니다. 더 큰 화면과 자세한 설명은 <a href="learn/index.html">턱관절 알아보기</a>에 있습니다.</p>
-    </div>
-  </section>
-
-  <!-- ===== 치료 전후 사례 (사진이 없으면 자동으로 숨겨집니다) ===== -->
-  <section class="section" id="cases" hidden>
-    <div class="container">
-      <div class="section-title">
-        <span class="label">Facial Asymmetry</span>
-        <h2>안면비대칭 — 틀어짐과 치료 전후</h2>
-        <p>위에서 틀어짐을 확인하는 과정을 보고, 아래에서 실제 치료 전후를 비교해 보세요.</p>
-      </div>
-      <div class="asym-wrap">
-        <div class="asym-viewer" id="asymView" aria-label="안면비대칭 검사선 도해"></div>
-        <div class="jaw-bar"><button type="button" id="asymPlay" class="on">⏸ 자동</button><input type="range" id="asymSlider" min="0" max="1000" value="0" aria-label="단계 조절" /></div>
-        <p class="jaw-cap" id="asymCap"></p>
-      </div>
-      <h3 class="asym-sub">실제 치료 전후 — 비대칭 개선 사례</h3>
-      <div class="ba-compact"><div class="ba-slider" id="baSlider">
-        <img class="ba-after" src="images/case-after.jpg" alt="치료 후" />
-        <div class="ba-before-wrap" id="baBeforeWrap">
-          <img class="ba-before" src="images/case-before.jpg" alt="치료 전" />
-        </div>
-        <div class="ba-handle" id="baHandle"></div>
-        <span class="ba-label before">치료 전</span>
-        <span class="ba-label after">치료 후</span>
-      </div>
-      </div><p class="ba-note">※ 약 6개월 치료 전후 사진 (동일 조건 촬영) · 본원의 실제 치료 사례이며, 치료 결과는 개인에 따라 다를 수 있습니다.</p>
-      <div class="blog-cta">
-        <a href="https://blog.naver.com/eumdentalclinic/223941340397" target="_blank" rel="noopener" class="btn btn-outline">이 치료 이야기 자세히 보기 →</a>
-      </div>
-    </div>
-  </section>
-
   <!-- ===== 턱관절 연관 증상 ===== -->
   <section class="section soft" id="symptoms">
     <div class="container">
@@ -381,6 +325,38 @@
       });
     })();
   </script>
+
+
+  <!-- ===== 치료 전후 사례 (사진이 없으면 자동으로 숨겨집니다) ===== -->
+  <section class="section" id="cases" hidden>
+    <div class="container">
+      <div class="section-title">
+        <span class="label">Facial Asymmetry</span>
+        <h2>안면비대칭 — 틀어짐과 치료 전후</h2>
+        <p>위에서 틀어짐을 확인하는 과정을 보고, 아래에서 실제 치료 전후를 비교해 보세요.</p>
+      </div>
+      <div class="asym-wrap">
+        <div class="asym-viewer" id="asymView" aria-label="안면비대칭 검사선 도해"></div>
+        <div class="jaw-bar"><button type="button" id="asymPlay" class="on">⏸ 자동</button><input type="range" id="asymSlider" min="0" max="1000" value="0" aria-label="단계 조절" /></div>
+        <p class="jaw-cap" id="asymCap"></p>
+      </div>
+      <h3 class="asym-sub">실제 치료 전후 — 비대칭 개선 사례</h3>
+      <div class="ba-compact"><div class="ba-slider" id="baSlider">
+        <img class="ba-after" src="images/case-after.jpg" alt="치료 후" />
+        <div class="ba-before-wrap" id="baBeforeWrap">
+          <img class="ba-before" src="images/case-before.jpg" alt="치료 전" />
+        </div>
+        <div class="ba-handle" id="baHandle"></div>
+        <span class="ba-label before">치료 전</span>
+        <span class="ba-label after">치료 후</span>
+      </div>
+      </div><p class="ba-note">※ 약 6개월 치료 전후 사진 (동일 조건 촬영) · 본원의 실제 치료 사례이며, 치료 결과는 개인에 따라 다를 수 있습니다.</p>
+      <div class="blog-cta">
+        <a href="https://blog.naver.com/eumdentalclinic/223941340397" target="_blank" rel="noopener" class="btn btn-outline">이 치료 이야기 자세히 보기 →</a>
+      </div>
+    </div>
+  </section>
+
 
   <!-- ===== 치료 안내 입구 ===== -->
   <section class="section">
@@ -594,7 +570,7 @@
           <div class="equip-body">
             <h3>턱관절 초음파 진단기</h3>
             <span class="model">ALPINION 초음파</span>
-            <p>방사선 노출 없이 턱관절 주변 근육과 인대, 연조직을 실시간 영상으로 확인합니다. 턱을 움직일 때의 상태를 그대로 관찰할 수 있어 턱관절 진단에 유용합니다.</p>
+            <p>방사선 노출 없이 턱 주변 근육과 인대를 실시간 영상으로 확인합니다.</p>
           </div>
         </div>
         <div class="equip-card">
@@ -602,7 +578,7 @@
           <div class="equip-body">
             <h3>디지털 3D-CT</h3>
             <span class="model">RAYSCAN α+ (알파플러스)</span>
-            <p>치아, 턱뼈, 턱관절을 3차원 영상으로 촬영하는 디지털 CT입니다. 턱관절 상태 평가와 임플란트 식립 계획 수립에 필요한 정보를 정밀하게 확인합니다.</p>
+            <p>치아·턱뼈·턱관절을 3차원 영상으로 정밀하게 촬영합니다.</p>
           </div>
         </div>
         <div class="equip-card">
@@ -610,7 +586,7 @@
           <div class="equip-body">
             <h3>휴대용 엑스레이</h3>
             <span class="model">Dentium</span>
-            <p>진료 체어에서 이동과 자세 변경 없이 필요한 순간 바로 촬영합니다. 치료 중간에도 즉시 확인할 수 있어 진료 흐름이 편안합니다.</p>
+            <p>진료 의자에서 이동 없이 필요한 순간 바로 촬영합니다.</p>
           </div>
         </div>
         <div class="equip-card">
@@ -618,7 +594,7 @@
           <div class="equip-body">
             <h3>엑스레이 영상 스캐너</h3>
             <span class="model">RIOScan</span>
-            <p>구내 촬영 영상을 고해상도 디지털 이미지로 변환합니다. 미세한 충치, 뿌리 끝 병소까지 세밀하게 판독하는 데 활용합니다.</p>
+            <p>촬영 영상을 고해상도 디지털 이미지로 변환해 판독합니다.</p>
           </div>
         </div>
       </div>
@@ -630,7 +606,7 @@
           <div class="equip-body">
             <h3>물리치료 레이저</h3>
             <span class="model">PHL-15 (Perfect Healing Laser)</span>
-            <p>턱관절과 근육의 통증 부위에 적용하는 치유 레이저 물리치료 장비입니다. 절개나 마취 없이 통증 관리와 조직 회복을 돕는 비수술적 치료에 사용합니다.</p>
+            <p>절개나 마취 없이 통증 관리와 조직 회복을 돕습니다.</p>
           </div>
         </div>
         <div class="equip-card">
@@ -638,7 +614,7 @@
           <div class="equip-body">
             <h3>임플란트 표면처리기</h3>
             <span class="model">plasmapp ACTILINK</span>
-            <p>임플란트 식립 직전, 픽스처 표면을 플라즈마로 세정·활성화하는 장비입니다. 표면의 친수성을 높여 뼈와 잘 결합할 수 있는 조건을 만들어 줍니다.</p>
+            <p>식립 직전 임플란트 표면을 플라즈마로 세정·활성화합니다.</p>
           </div>
         </div>
       </div>
@@ -650,7 +626,7 @@
           <div class="equip-body">
             <h3>핸드피스 전용 멸균기</h3>
             <span class="model">핸드피스 세척·멸균 시스템</span>
-            <p>입안에 직접 닿는 핸드피스를 매 환자마다 내부 관로까지 세척하고 멸균합니다. 겉면 소독만으로는 닿지 않는 부분까지 관리합니다.</p>
+            <p>입안에 닿는 핸드피스를 환자마다 내부 관로까지 멸균합니다.</p>
           </div>
         </div>
         <div class="equip-card">
@@ -658,7 +634,7 @@
           <div class="equip-body">
             <h3>플라즈마 멸균기</h3>
             <span class="model">저온 플라즈마 멸균</span>
-            <p>고온에 약한 정밀 기구를 과산화수소 저온 플라즈마 방식으로 멸균합니다. 기구 특성에 맞는 멸균 방식을 구분해 적용합니다.</p>
+            <p>열에 약한 정밀 기구를 저온 플라즈마 방식으로 멸균합니다.</p>
           </div>
         </div>
         <div class="equip-card">
@@ -666,7 +642,7 @@
           <div class="equip-body">
             <h3>고압증기 멸균기</h3>
             <span class="model">Steam Sterilizer (오토클레이브)</span>
-            <p>고온·고압 증기로 진료 기구를 멸균하는 기본 감염 관리 장비입니다. 멸균 후 포장 상태로 보관하여 사용 직전까지 청결을 유지합니다.</p>
+            <p>진료 기구를 고온·고압 증기로 멸균해 포장 상태로 보관합니다.</p>
           </div>
         </div>
       </div>
@@ -820,8 +796,6 @@
   <script>window.JAW_ASSET_BASE = "learn/";</script>
   <script src="learn/jaw-motion.js?v=4"></script>
   <script>
-    initJawViewer({ viewer: "jawView", play: "jawPlay", slider: "jawSlider", cap: "jawCap", click: false });
-    initJawViewer({ viewer: "jawViewB", play: "jawPlayB", slider: "jawSliderB", cap: "jawCapB", click: true });
     initAsymViewer({ viewer: "asymView", play: "asymPlay", slider: "asymSlider", cap: "asymCap" });
   </script>
   <script src="js/main.js" defer></script>

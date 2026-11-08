@@ -56,12 +56,14 @@ a { color: inherit; text-decoration: none; }
 /* 로고: 하나의 이미지, 화면이 좁아져도 줄바꿈 없이 축소만 됨 */
 .logo { display: flex; align-items: center; flex-shrink: 0; }
 .logo .logo-img {
-  height: 36px; width: auto; display: block;
-  max-width: min(60vw, 380px); object-fit: contain;
+  height: 46px; width: auto; display: block;
+  max-width: min(80vw, 440px); object-fit: contain;
 }
 .main-nav {
   display: flex; gap: 18px; align-items: center; justify-content: center;
-  flex-wrap: wrap; margin: 12px 0 14px;
+  flex-wrap: wrap; width: 100%; margin: 14px 0;
+  /* 로고와 메뉴를 나누는 연한 구분선 */
+  border-top: 1px solid var(--border); padding-top: 12px;
 }
 .main-nav a {
   font-size: 0.9rem; font-weight: 600; color: var(--text-light);
@@ -585,7 +587,7 @@ body.fx #services .reveal {
 
 /* ---------- 장비 소개 ---------- */
 .equip-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
 }
 .equip-card {
   background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
@@ -599,10 +601,10 @@ body.fx #services .reveal {
   color: var(--text-light); font-size: 0.85rem;
 }
 .equip-photo img { width: 100%; height: 100%; object-fit: cover; }
-.equip-body { padding: 20px 22px 24px; }
-.equip-body h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 4px; }
-.equip-body .model { font-size: 0.82rem; color: var(--accent); font-weight: 700; margin-bottom: 10px; display: block; }
-.equip-body p { font-size: 0.9rem; color: var(--text-light); }
+.equip-body { padding: 14px 16px 16px; }
+.equip-body h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 3px; }
+.equip-body .model { font-size: 0.78rem; color: var(--accent); font-weight: 700; margin-bottom: 6px; display: block; }
+.equip-body p { font-size: 0.84rem; color: var(--text-light); }
 
 .equip-group-title {
   display: flex; align-items: center; gap: 12px;
@@ -616,8 +618,13 @@ body.fx #services .reveal {
 }
 .equip-group-title small { font-weight: 600; color: var(--text-light); font-size: 0.85rem; }
 
+@media (max-width: 1100px) { .equip-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 900px) { .equip-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .equip-grid { grid-template-columns: 1fr; } }
+@media (max-width: 560px) {
+  .equip-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .equip-body { padding: 10px 12px 12px; }
+  .equip-body p { font-size: 0.8rem; }
+}
 
 /* ---------- 인용구 ---------- */
 .quote-block {
@@ -820,6 +827,7 @@ body.fx #services .reveal {
     gap: 1px; background: var(--border);
     border: 1px solid var(--border);
     margin: 10px 0 12px;
+    padding: 0;
   }
   .main-nav a {
     background: #fff; color: var(--text);
@@ -836,7 +844,7 @@ body.fx #services .reveal {
   .main-nav a { font-size: 0.8rem; padding: 10px 1px; }
 }
 @media (max-width: 768px) {
-  .logo .logo-img { height: 30px; }
+  .logo .logo-img { height: 36px; }
   .about-grid, .info-grid, .doctor-grid { grid-template-columns: 1fr; }
   .doctor-photo { max-width: 420px; margin: 0 auto; }
   .lecture-cards { grid-template-columns: 1fr; max-width: 420px; }
