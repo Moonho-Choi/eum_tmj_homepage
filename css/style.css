@@ -38,8 +38,8 @@ body {
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 .container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
-/* 헤더가 2단으로 길어진 만큼, 페이지 내 이동 시 제목이 가려지지 않게 여백 확보 */
-.section[id] { scroll-margin-top: 64px; }
+/* 페이지 내 이동 시 제목이 고정 머리글에 가려지지 않게 여백 확보 */
+.section[id] { scroll-margin-top: 88px; }
 
 /* ---------- 헤더 ---------- */
 .site-header {
@@ -48,23 +48,20 @@ a { color: inherit; text-decoration: none; }
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
 }
-/* 2단 구성: 로고를 위 칸 중앙에, 메뉴를 그 바로 아래 중앙에 */
+/* 한 줄 구성(컴퓨터): 로고 왼쪽, 메뉴 오른쪽 — 2026-11-11 절충안(예전 한 줄로 복귀하되 로고는 36→42px로 크게) */
 .header-inner {
-  display: flex; flex-direction: column; align-items: center;
-  height: auto; padding-top: 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 74px;
+  /* 로고(42px, 가로로 긴 이미지)와 메뉴 8개가 한 줄에 들어가도록 머리글만 본문보다 살짝 넓게 */
+  max-width: 1180px;
 }
 /* 로고: 하나의 이미지, 화면이 좁아져도 줄바꿈 없이 축소만 됨 */
 .logo { display: flex; align-items: center; flex-shrink: 0; }
 .logo .logo-img {
-  height: 46px; width: auto; display: block;
-  max-width: min(80vw, 440px); object-fit: contain;
+  height: 42px; width: auto; display: block;
+  max-width: min(60vw, 420px); object-fit: contain;
 }
-.main-nav {
-  display: flex; gap: 18px; align-items: center; justify-content: center;
-  flex-wrap: wrap; width: 100%; margin: 14px 0;
-  /* 로고와 메뉴를 나누는 연한 구분선 */
-  border-top: 1px solid var(--border); padding-top: 12px;
-}
+.main-nav { display: flex; gap: 13px; align-items: center; flex-shrink: 0; }
 .main-nav a {
   font-size: 0.9rem; font-weight: 600; color: var(--text-light);
   transition: color 0.2s;
@@ -845,7 +842,7 @@ body.fx #services .reveal {
 /* 로고+메뉴가 한 줄에 안 들어가는 폭에서는 메뉴를 숨기지 않고
    로고 아래 가로 스크롤 줄로 항상 보여준다 (환자가 메뉴를 바로 찾도록) */
 @media (max-width: 1200px) {
-  .header-inner { flex-wrap: wrap; height: auto; padding-top: 10px; }
+  .header-inner { flex-wrap: wrap; justify-content: center; height: auto; padding-top: 10px; }
   /* 메뉴를 둥근 알약(칩) 모양으로 — 엑셀 표 느낌의 격자선 제거 (2026-11-11 B안) */
   .main-nav {
     order: 3; width: 100%;
@@ -894,25 +891,45 @@ body.fx #services .reveal {
   .quickbar { display: block; }
   body { padding-bottom: 56px; } /* 하단 상담바 공간 확보 */
 
-  /* 진료 과목: 턱관절 카드 4장을 가로 압축형으로 — 사진 왼쪽, 설명은 2줄까지 (2026-11-11) */
-  #services .svc-tmj { gap: 10px; }
+  /* 진료 과목(메인): 턱관절 4장도 일반 진료처럼 좌우로 미는 사진 띠 — 색 타일 유지, 설명은 숨김 (2026-11-11) */
+  #services .svc-tmj {
+    display: flex; gap: 10px; overflow-x: auto;
+    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    padding: 2px 2px 10px; scrollbar-width: none;
+  }
+  #services .svc-tmj::-webkit-scrollbar { display: none; }
   #services .svc-tmj .card {
-    display: grid; grid-template-columns: 84px 1fr;
-    gap: 4px 14px; align-items: start; padding: 14px;
+    flex: 0 0 min(42%, 150px); scroll-snap-align: start;
+    padding: 0 0 10px; text-align: center;
   }
   #services .svc-tmj .tcard-photo {
-    grid-row: 1 / span 2; width: 84px; aspect-ratio: 1 / 1;
-    margin-bottom: 0; border-radius: 10px;
+    width: 100%; aspect-ratio: 4 / 3;
+    margin: 0 0 8px; border-radius: 0;
   }
-  #services .svc-tmj .card h3 { margin: 0; }
-  #services .svc-tmj .card p {
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-    overflow: hidden; font-size: 0.82rem; line-height: 1.55;
-  }
+  #services .svc-tmj .card h3 { font-size: 0.85rem; margin: 0; padding: 0 6px; }
+  #services .svc-tmj .card p { display: none; }
 
   /* 묶음 제목: 부제를 제목 아래 줄로 내려 두 줄 꺾임 방지 */
   .equip-group-title { flex-wrap: wrap; row-gap: 2px; margin: 36px 0 14px; }
   .equip-group-title small { flex-basis: 100%; margin-left: 42px; }
+  /* 일반 진료 사진 띠: 셋째 카드가 살짝 보이게 하되, 턱관절 카드보다 커지지 않게 상한 */
+  .svc-strip .strip-card { flex: 0 0 min(42%, 150px); }
+  .strip-card span { font-size: 0.85rem; padding: 8px 6px 10px; }
+  /* 병원 소개 페이지: 턱관절 카드를 일반 진료 카드와 같은 꼴로 — 한 칸에 하나, 왼쪽 사진 112px + 설명 전부 */
+  .page-about #services .svc-tmj {
+    display: grid; grid-template-columns: 1fr; gap: 14px;
+    overflow: visible; padding: 0;
+  }
+  .page-about #services .svc-tmj .card {
+    flex: none; display: grid; grid-template-columns: 112px 1fr;
+    gap: 4px 16px; align-items: start; padding: 18px; text-align: left;
+  }
+  .page-about #services .svc-tmj .tcard-photo {
+    grid-row: 1 / span 2; width: 112px; aspect-ratio: 1 / 1;
+    margin: 0; border-radius: 10px;
+  }
+  .page-about #services .svc-tmj .card h3 { font-size: 1rem; margin: 0; padding: 0; }
+  .page-about #services .svc-tmj .card p { display: block; font-size: 0.9rem; line-height: 1.6; }
 }
 
 
@@ -938,11 +955,22 @@ body.fx #services .reveal {
 .gcard-photo { width: 112px; aspect-ratio: 4 / 3; border-radius: 10px; overflow: hidden; grid-row: 1 / span 2; }
 .gcard-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-/* ---------- 메인 일반 진료 요약 칩 (상세 설명은 about.html) ---------- */
-.svc-mini { display: flex; flex-wrap: wrap; gap: 8px; }
-.svc-mini .chip {
-  background: #fff; border: 1px solid var(--border); border-radius: 999px;
-  padding: 9px 16px; font-size: 0.9rem; font-weight: 600; color: var(--text);
+/* ---------- 메인 일반 진료 사진 띠 (좌우로 밀기, 상세는 about.html) ---------- */
+.svc-strip {
+  display: flex; gap: 12px; overflow-x: auto;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  padding: 2px 2px 10px;
+  scrollbar-width: none;
 }
+.svc-strip::-webkit-scrollbar { display: none; }
+.strip-card {
+  flex: 1 0 160px; scroll-snap-align: start;
+  background: #fff; border: 1px solid var(--border); border-radius: 12px;
+  overflow: hidden; text-align: center; color: var(--text);
+  box-shadow: 0 2px 10px rgba(15, 76, 99, 0.06);
+}
+.strip-photo { aspect-ratio: 4 / 3; overflow: hidden; }
+.strip-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.strip-card span { display: block; padding: 10px 8px 12px; font-size: 0.9rem; font-weight: 700; }
 .svc-mini-note { margin-top: 12px; font-size: 0.9rem; color: var(--text-light); }
 .svc-mini-note a { color: var(--primary); font-weight: 700; }

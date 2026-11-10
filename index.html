@@ -139,13 +139,6 @@
     .asym-stage .ag { position: absolute; opacity: 0; transition: opacity 0.3s, background 0.4s; }
     .asym-sub { text-align: center; font-size: 1.05rem; font-weight: 800; color: var(--primary-dark); margin: 0 0 14px; }
     #cases .section-title h2 { font-size: 1.5rem; }
-    .treat-cta { background: var(--primary-light); border-radius: var(--radius); padding: 38px 24px; text-align: center; }
-    .treat-cta p { color: var(--text); font-weight: 600; }
-    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
-    .btn-fill { display: inline-block; background: var(--primary); color: #fff; font-weight: 700; padding: 12px 28px; border-radius: 999px; }
-    .btn-fill:hover { background: var(--primary-dark); }
-    .btn-line { display: inline-block; border: 1.5px solid var(--primary); color: var(--primary); font-weight: 700; padding: 11px 26px; border-radius: 999px; }
-    .btn-line:hover { background: var(--primary); color: #fff; }
     @media (max-width: 860px) {
       .jaw-duo-main { grid-template-columns: 1fr; gap: 40px; }
     }
@@ -358,19 +351,6 @@
   </section>
 
 
-  <!-- ===== 치료 안내 입구 ===== -->
-  <section class="section">
-    <div class="container">
-      <div class="treat-cta">
-        <p>턱관절 치료는 되돌릴 수 있는 보존적 치료부터 단계적으로 진행합니다.</p>
-        <div class="cta-btns">
-          <a class="btn-fill" href="learn/treatment.html">치료 안내 보기</a>
-          <a class="btn-line" href="learn/index.html">턱관절 알아보기</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===== 병원 소개 ===== -->
   <section class="section" id="about">
     <div class="container about-grid">
@@ -427,11 +407,23 @@
         </div>
       </div>
       <h3 class="svc-group">일반 진료</h3>
-      <div class="svc-mini">
-        <span class="chip">충치 치료</span>
-        <span class="chip">신경치료</span>
-        <span class="chip">잇몸 치료 · 스케일링</span>
-        <span class="chip">사랑니 발치</span>
+      <div class="svc-strip">
+        <a class="strip-card" href="about.html#services">
+          <div class="strip-photo"><img src="images/cards/gv-cavity.jpg" alt="충치 치료" loading="lazy"></div>
+          <span>충치 치료</span>
+        </a>
+        <a class="strip-card" href="about.html#services">
+          <div class="strip-photo"><img src="images/cards/gv-endo.jpg" alt="신경치료" loading="lazy"></div>
+          <span>신경치료</span>
+        </a>
+        <a class="strip-card" href="about.html#services">
+          <div class="strip-photo"><img src="images/cards/gv-scaling.jpg" alt="잇몸 치료 · 스케일링" loading="lazy"></div>
+          <span>잇몸 치료 · 스케일링</span>
+        </a>
+        <a class="strip-card" href="about.html#services">
+          <div class="strip-photo"><img src="images/cards/gv-wisdom.jpg" alt="사랑니 발치" loading="lazy"></div>
+          <span>사랑니 발치</span>
+        </a>
       </div>
       <p class="svc-mini-note">충치부터 사랑니까지, 일반 진료도 꼼꼼히 진행합니다. <a href="about.html#services">자세한 안내 보기 →</a></p>
     </div>
