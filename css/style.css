@@ -893,6 +893,31 @@ body.fx #services .reveal {
   .hero { padding: 60px 0 56px; }
   .quickbar { display: block; }
   body { padding-bottom: 56px; } /* 하단 상담바 공간 확보 */
+
+  /* 진료 과목: 턱관절 카드 4장을 가로 압축형으로 — 사진 왼쪽, 설명은 2줄까지 (2026-11-11) */
+  #services .svc-tmj { gap: 10px; }
+  #services .svc-tmj .card {
+    display: grid; grid-template-columns: 84px 1fr;
+    gap: 4px 14px; align-items: start; padding: 14px;
+  }
+  #services .svc-tmj .tcard-photo {
+    grid-row: 1 / span 2; width: 84px; aspect-ratio: 1 / 1;
+    margin-bottom: 0; border-radius: 10px;
+  }
+  #services .svc-tmj .card h3 { margin: 0; }
+  #services .svc-tmj .card p {
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden; font-size: 0.82rem; line-height: 1.55;
+  }
+
+  /* 장비 소개: 사진+이름만 3열로 압축, 설명·영문명은 숨김 (2026-11-11) */
+  .equip-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .equip-body { padding: 8px 5px 10px; text-align: center; }
+  .equip-body h3 { font-size: 0.76rem; margin: 0; }
+  .equip-body .model, .equip-body p { display: none; }
+  /* 묶음 제목: 부제를 제목 아래 줄로 내려 두 줄 꺾임 방지 */
+  .equip-group-title { flex-wrap: wrap; row-gap: 2px; margin: 36px 0 14px; }
+  .equip-group-title small { flex-basis: 100%; margin-left: 42px; }
 }
 
 
