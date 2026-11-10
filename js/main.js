@@ -92,3 +92,31 @@
     if (el) el.scrollIntoView();
   });
 })();
+
+// 휴대폰에서 아래로 내리면 머리글 메뉴 2줄을 접고 로고만 남긴다. 위로 올리거나 맨 위 근처면 다시 편다.
+// (접힌 모습은 css/style.css의 768px 이하 nav-collapsed 규칙에만 있어 컴퓨터·태블릿에는 영향 없음)
+(function () {
+  var header = document.querySelector('.site-header');
+  if (!header) return;
+  var lastY = window.pageYOffset || 0;
+  // 접힘/펼침 직후 0.45초는 상태를 바꾸지 않는다.
+  // (머리글 높이가 변하는 동안 브라우저가 스크롤 위치를 미세 조정해, 방향을 착각하고 왕복하는 것을 막음)
+  var holdUntil = 0;
+  window.addEventListener('scroll', function () {
+    var y = window.pageYOffset;
+    if (y < 0) y = 0; // 아이폰 고무줄 스크롤 보정
+    var now = Date.now();
+    if (y <= 60) {
+      header.classList.remove('nav-collapsed'); // 맨 위 근처는 언제나 펼침
+    } else if (now >= holdUntil) {
+      if (y > lastY + 4 && y > 140 && !header.classList.contains('nav-collapsed')) {
+        header.classList.add('nav-collapsed');
+        holdUntil = now + 450;
+      } else if (y < lastY - 4 && header.classList.contains('nav-collapsed')) {
+        header.classList.remove('nav-collapsed');
+        holdUntil = now + 450;
+      }
+    }
+    lastY = y;
+  }, { passive: true });
+})();

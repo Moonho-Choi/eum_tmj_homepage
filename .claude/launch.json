@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "homepage-preview",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "python3 -m http.server \"${PORT:-8942}\" -d /private/tmp/claude-501/-Users-eumtmj/2ee462ff-94d8-4836-bc6a-25bd0382275b/scratchpad/site"],
+      "port": 8942
+    }
+  ]
+}
