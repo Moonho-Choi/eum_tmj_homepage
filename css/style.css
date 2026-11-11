@@ -843,28 +843,34 @@ body.fx #services .reveal {
    로고 아래 가로 스크롤 줄로 항상 보여준다 (환자가 메뉴를 바로 찾도록) */
 @media (max-width: 1200px) {
   .header-inner { flex-wrap: wrap; justify-content: center; height: auto; padding-top: 10px; }
-  /* 메뉴를 둥근 알약(칩) 모양으로 — 엑셀 표 느낌의 격자선 제거 (2026-11-11 B안) */
+  /* 메뉴를 글자만으로 — 단추(알약) 모양 전부 제거 (2026-11-11 원장 선택) */
   .main-nav {
     order: 3; width: 100%;
     display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 7px; background: transparent;
+    gap: 2px 7px; background: transparent;
     border: none;
-    margin: 12px 0 14px;
+    margin: 8px 0 10px;
     padding: 0 10px;
   }
   .main-nav a {
-    background: #f1f6f8; color: var(--text);
+    background: transparent; color: var(--text);
     text-align: center; padding: 9px 2px;
     font-size: 0.88rem; font-weight: 600;
-    border-radius: 999px; white-space: nowrap;
+    border-radius: 0; white-space: nowrap;
   }
-  .main-nav a.active { background: var(--primary-light); color: var(--primary); font-weight: 800; }
-  .main-nav a.nav-cta { background: var(--primary); color: #fff; font-weight: 800; }
+  .main-nav a.active {
+    color: var(--primary); font-weight: 800;
+    text-decoration: underline; text-underline-offset: 7px; text-decoration-thickness: 2.5px;
+  }
+  /* 전화 상담도 글자만 — 공통 .nav-cta의 color:#fff !important를 이기려면 !important 필요 */
+  .main-nav a.nav-cta { background: transparent; color: var(--primary) !important; font-weight: 800; }
   .main-nav a.nav-cta .ic-inline { display: none; }
   .menu-toggle { display: none; }
 }
 @media (max-width: 420px) {
-  .main-nav a { font-size: 0.8rem; padding: 10px 1px; }
+  /* 글자 메뉴 8개가 375px 폭 안에 다 들어가는 조합 (0.8rem이면 11px 넘쳐 끝 글자가 잘림) */
+  .main-nav { gap: 2px 5px; padding: 0 8px; }
+  .main-nav a { font-size: 0.78rem; letter-spacing: -0.01em; padding: 10px 1px; }
 }
 @media (max-width: 768px) {
   .logo .logo-img { height: 36px; }
