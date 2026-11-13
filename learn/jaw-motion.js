@@ -169,12 +169,12 @@
       var gl = Math.min(MX, cx), gw = Math.abs(cx - MX) * (pDot>0 ? 1 : 0) * (1-pFix);
       gap.style.left = gl + "px"; gap.style.width = gw + "px"; gap.style.opacity = pDot>0 && pFix<0.9 ? 1 : 0;
       var capEl = document.getElementById(opts.cap);
-      if (t < 0.12) capEl.innerHTML = "<b>비대칭 턱</b> — 아래턱이 한쪽으로 밀린 상태입니다.";
-      else if (t < 0.30) capEl.innerHTML = "<b>정중선</b> — 미간을 지나는 세로 기준선을 그어 봅니다.";
-      else if (t < 0.45) capEl.innerHTML = "<b>눈높이</b> — 눈은 수평입니다.";
-      else if (t < 0.60) capEl.innerHTML = "<b>입꼬리</b> — 입꼬리 선이 살짝 기울어져 있습니다.";
-      else if (t < 0.74) capEl.innerHTML = "<b>턱끝</b> — 턱끝이 정중선에서 벗어나 있습니다.";
-      else capEl.innerHTML = "<b>맞물림을 바로잡으면</b> — 아래턱이 제자리를 찾고 턱끝이 정중선으로 돌아옵니다.";
+      if (t < 0.12) capEl.innerHTML = "<b>비대칭 교정 전</b>";
+      else if (t < 0.30) capEl.innerHTML = "<b>비대칭 교정 전</b>";
+      else if (t < 0.45) capEl.innerHTML = "<b>비대칭 교정 전</b>";
+      else if (t < 0.60) capEl.innerHTML = "<b>비대칭 교정 전</b>";
+      else if (t < 0.74) capEl.innerHTML = "<b>비대칭 교정 전</b>";
+      else capEl.innerHTML = "<b>비대칭 교정 후</b>";
     }
     var playing = true, t = 0, hold = 0;
     var slider = document.getElementById(opts.slider), btn = document.getElementById(opts.play);

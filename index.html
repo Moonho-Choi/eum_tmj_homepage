@@ -126,7 +126,7 @@
     .jaw-bar button { font: inherit; font-weight: 700; padding: 7px 14px; border-radius: 999px; border: 1.5px solid var(--border); background: #fff; cursor: pointer; color: var(--text-light); }
     .jaw-bar button.on { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
     .jaw-bar input[type=range] { flex: 1; min-width: 120px; accent-color: var(--primary); }
-    .jaw-cap { margin-top: 8px; min-height: 52px; font-size: 0.92rem; }
+    .jaw-cap { margin-top: 8px; min-height: 26px; font-size: 0.92rem; }
     .jaw-cap b { color: var(--primary-dark); }
     .jaw-note { text-align: center; color: var(--text-light); font-size: 0.9rem; margin-top: 16px; }
     .jaw-note a { color: var(--primary); font-weight: 700; }
@@ -223,10 +223,6 @@
       <h1>턱의 편안함에서 시작되는<br />건강한 미소</h1>
       <p>턱관절 · 교합 · 통증을 함께 살피는 진료.<br />
         치아만 보지 않고, 턱관절과 신경까지 확인합니다.</p>
-      <div class="hero-buttons">
-        <a href="#symptoms" class="btn hero-glass">내 증상 찾아보기</a>
-        <a href="tmj.html" class="btn hero-glass">턱관절 클리닉 알아보기</a>
-      </div>
     </div>
   </section>
 
@@ -367,7 +363,10 @@
           <li>개인 맞춤 치료 — 증상과 생활습관을 고려한 1:1 치료 계획</li>
           <li>충분한 설명과 상담 중심의 진료</li>
         </ul>
-        <div class="affiliation">사단법인 한국MEAW교정연구회</div>
+        <div class="affil-row">
+          <span class="meaw-lockup"><img src="images/meaw-mark.png" alt="" /><b><i>M</i>EA<i class="w">W</i></b><span>턱관절 연구회</span></span>
+          <div class="affiliation">사단법인 한국MEAW교정연구회</div>
+        </div>
         <p style="margin-top:22px;"><a href="doctor.html" class="btn btn-primary" style="box-shadow:0 6px 16px rgba(26,107,138,0.3);">대표원장 소개 보기 →</a></p>
       </div>
     </div>
@@ -526,10 +525,11 @@
           <span class="map-pin" aria-hidden="true"><svg viewBox="0 0 24 24" width="38" height="38" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.6" fill="#fff"/></svg></span>
           <span class="map-open">카카오맵에서 크게 보기</span>
         </a>
-      </div>
-      <div class="map-actions">
-        <a href="https://map.kakao.com/?q=서울 관악구 은천로 169 이음턱편한치과" target="_blank" rel="noopener" class="btn btn-outline">카카오맵 길찾기</a>
-        <a href="https://map.naver.com/p/entry/place/1252799053" target="_blank" rel="noopener" class="btn btn-outline">네이버지도 길찾기</a>
+        <!-- 길찾기: 지도 카드 아래에 붙은 좌우 두 칸 -->
+        <div class="map-actions">
+          <a href="https://map.kakao.com/?q=서울 관악구 은천로 169 이음턱편한치과" target="_blank" rel="noopener" aria-label="카카오맵 길찾기"><span class="map-logo map-kakao"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span>카카오맵</a>
+          <a href="https://map.naver.com/p/entry/place/1252799053" target="_blank" rel="noopener" aria-label="네이버지도 길찾기"><span class="map-logo map-naver"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.273 12.845 7.376 0H0v24h7.726V11.156L16.624 24H24V0h-7.727v12.845Z"/></svg></span>네이버지도</a>
+        </div>
       </div>
     </div>
   </section>
@@ -568,7 +568,7 @@
   <div class="quickbar"><a href="tel:02-6745-2754"><svg class="ic-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v2a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1A19.5 19.5 0 0 1 5.2 11.8 19.8 19.8 0 0 1 2.1 3.2 2 2 0 0 1 4.1 1h2a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L7.2 8.8a16 16 0 0 0 8 8l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg> 전화 상담 예약 02-6745-2754</a></div>
 
   <script>window.JAW_ASSET_BASE = "learn/";</script>
-  <script src="learn/jaw-motion.js?v=5"></script>
+  <script src="learn/jaw-motion.js?v=6"></script>
   <script>
     initAsymViewer({ viewer: "asymView", play: "asymPlay", slider: "asymSlider", cap: "asymCap" });
   </script>
