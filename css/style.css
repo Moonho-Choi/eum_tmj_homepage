@@ -83,11 +83,12 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ---------- 히어로 ---------- */
-/* images/hero.jpg 사진 위에 어두운 오버레이 + 흰 글씨.
+/* images/hero.jpg 사진 위에 흰 글씨. 어두운 막은 글씨가 놓이는 가운데에만 둥글게 깔고
+   가장자리는 사진 그대로 밝게 둔다 (2026-11-14 밝기 개선, 사진도 12% 밝게 다시 저장).
    사진이 없으면 진한 그라데이션만 표시됩니다. */
 .hero {
   background:
-    linear-gradient(160deg, rgba(10, 38, 54, 0.36) 0%, rgba(10, 38, 54, 0.21) 100%),
+    radial-gradient(ellipse 75% 60% at 50% 50%, rgba(10, 38, 54, 0.42) 0%, rgba(10, 38, 54, 0.18) 55%, rgba(10, 38, 54, 0) 100%),
     url("../images/hero.jpg") center / cover no-repeat,
     linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 100%);
   padding: 110px 0 100px;
