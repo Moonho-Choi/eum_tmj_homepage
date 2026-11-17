@@ -120,3 +120,12 @@
     lastY = y;
   }, { passive: true });
 })();
+
+// 휴대폰 메뉴(화면 가득 목록): 항목을 누르면 목록을 닫는다 (같은 쪽 안의 #구역 이동 때 목록이 화면을 가린 채 남지 않게)
+(function () {
+  var nav = document.querySelector('.main-nav');
+  if (!nav) return;
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('a')) nav.classList.remove('open');
+  });
+})();

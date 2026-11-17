@@ -1010,3 +1010,42 @@ body.fx #services .reveal {
 .meaw-lockup b i { font-style: normal; color: #0e6b88; }
 .meaw-lockup b i.w { color: #2095b8; }
 .meaw-lockup > span { font-size: 0.95rem; font-weight: 800; color: #16262E; line-height: 1; }
+
+
+/* ===== 2026-11-16 휴대폰 머리글: 로고 + "메뉴" 단추, 누르면 화면 가득 목록 ===== */
+@media (max-width: 768px) {
+  .header-inner { flex-wrap: nowrap; justify-content: space-between; height: 56px; padding-top: 0; padding-bottom: 0; }
+  .site-header.nav-collapsed .header-inner { padding-bottom: 0; }
+  .logo .logo-img { height: 30px; max-width: 62vw; }
+  .menu-toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 0; padding: 12px 0 12px 14px; color: var(--primary-dark); }
+  .menu-toggle::before { content: "메뉴"; font-size: 0.95rem; font-weight: 700; font-family: inherit; }
+  .menu-toggle::after { content: ""; width: 20px; height: 8px; border-top: 2px solid currentColor; border-bottom: 2px solid currentColor; }
+  .site-header:has(.main-nav.open) .menu-toggle::before { content: "닫기"; }
+  .site-header:has(.main-nav.open) .menu-toggle::after { display: none; }
+  .main-nav, .site-header.nav-collapsed .main-nav { display: none; }
+  .main-nav.open, .site-header.nav-collapsed .main-nav.open {
+    display: flex; flex-direction: column; align-items: stretch; gap: 0;
+    position: absolute; left: 0; right: 0; top: 100%; height: calc(100vh - 56px); height: calc(100dvh - 56px);
+    width: auto; order: 0; z-index: 99; background: #f7fafb; margin: 0;
+    padding: 6px 22px calc(22px + env(safe-area-inset-bottom));
+    max-height: none; opacity: 1; overflow-y: auto;
+  }
+  .main-nav.open a {
+    display: flex; justify-content: space-between; align-items: center; text-align: left;
+    padding: 19px 2px; font-size: 1.12rem; font-weight: 700; color: var(--text);
+    border-bottom: 1px solid var(--border);
+  }
+  .main-nav.open a::after { content: "→"; color: var(--primary); font-weight: 400; }
+  .main-nav.open a.active { text-decoration: none; color: var(--primary); }
+  .main-nav.open a.nav-cta {
+    margin-top: auto; justify-content: center; gap: 8px; background: var(--primary); color: #fff !important;
+    border: 0; border-radius: 14px; padding: 17px; font-size: 1.05rem;
+  }
+  .main-nav.open a.nav-cta::after { content: "02-6745-2754"; color: #fff; font-weight: 800; }
+  .main-nav.open::after {
+    content: "월 · 화 · 금 09:30–18:00 / 수 09:30–19:00 / 토 09:30–13:30\A목 · 일 · 공휴일 휴진";
+    white-space: pre-line; color: var(--text-light); font-size: 0.84rem; line-height: 1.65; padding-top: 12px;
+  }
+  body:has(.main-nav.open) { overflow: hidden; }
+  body:has(.main-nav.open) .quickbar { display: none; }
+}
