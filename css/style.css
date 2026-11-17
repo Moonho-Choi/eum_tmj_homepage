@@ -1051,8 +1051,4 @@ body.fx #services .reveal {
 
 
 /* ===== 2026-11-17 명조 큰 제목: 흰 바탕의 구역 큰 제목(검정)과 단색 바탕의 맨 위 제목(흰색)에만. 사진 위 제목·글 안 소제목·본문·메뉴·단추는 고딕 유지 ===== */
-.sym-hero h1, .learn-hero h1 {
-  font-family: "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", serif;
-  font-weight: 700; letter-spacing: -0.02em; /* 2026-11-17 굵은 고딕과 균형이 맞도록 600 → 700 */
-}
 #cases .section-title h2 { font-family: inherit; font-weight: 800; color: var(--primary-dark); letter-spacing: normal; } /* 2026-11-17 원장 지시: 안면비대칭 구역 제목만 명조 이전 고딕으로 되돌림 */
