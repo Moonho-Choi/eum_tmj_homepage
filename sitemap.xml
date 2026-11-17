@@ -66,6 +66,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://eumtmj.co.kr/learn/sleep.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://eumtmj.co.kr/learn/asymmetry.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

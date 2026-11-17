@@ -1049,3 +1049,12 @@ body.fx #services .reveal {
   body:has(.main-nav.open) { overflow: hidden; }
   body:has(.main-nav.open) .quickbar { display: none; }
 }
+
+
+/* ===== 2026-11-17 명조 큰 제목: 흰 바탕의 구역 큰 제목(검정)과 단색 바탕의 맨 위 제목(흰색)에만. 사진 위 제목·글 안 소제목·본문·메뉴·단추는 고딕 유지 ===== */
+.section-title h2, .about-grid h2, .navy-band h2, .sym-hero h1, .learn-hero h1 {
+  font-family: "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", serif;
+  font-weight: 600; letter-spacing: -0.02em;
+}
+.section-title h2, .about-grid h2 { color: #15181c; }
+.navy-band h2, .sym-hero h1, .learn-hero h1 { font-weight: 700; }
