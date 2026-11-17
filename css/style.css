@@ -538,8 +538,8 @@ body.fx #services .reveal {
   width: 6px; height: 6px; border-radius: 50%; background: var(--brand-blue);
 }
 .lecture-cards {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 30px;
-  max-width: 880px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px;
+  max-width: 1080px; margin: 0 auto;
 }
 .lecture-card {
   margin: 0; background: var(--bg); border: 1px solid var(--border);
