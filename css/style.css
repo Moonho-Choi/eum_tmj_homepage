@@ -1035,7 +1035,6 @@ body.fx #services .reveal {
     padding: 19px 2px; font-size: 1.12rem; font-weight: 700; color: var(--text);
     border-bottom: 1px solid var(--border);
   }
-  .main-nav.open a::after { content: "→"; color: var(--primary); font-weight: 400; }
   .main-nav.open a.active { text-decoration: none; color: var(--primary); }
   .main-nav.open a.nav-cta {
     margin-top: auto; justify-content: center; gap: 8px; background: var(--primary); color: #fff !important;
@@ -1057,3 +1056,4 @@ body.fx #services .reveal {
   font-weight: 700; letter-spacing: -0.02em; /* 2026-11-17 굵은 고딕과 균형이 맞도록 600 → 700 */
 }
 .section-title h2, .about-grid h2 { color: #15181c; }
+#cases .section-title h2 { font-family: inherit; font-weight: 800; color: var(--primary-dark); letter-spacing: normal; } /* 2026-11-17 원장 지시: 안면비대칭 구역 제목만 명조 이전 고딕으로 되돌림 */
