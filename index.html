@@ -200,15 +200,13 @@
       font-weight: 700; letter-spacing: -0.02em;
     }
     .section-title h2, .about-grid h2 { color: #15181c; }
-    /* ===== 2026-11-16 첫 화면 개편: 문구 + 증상 지도를 한 화면에 ===== */
-    .hero.hero-v2 { background: linear-gradient(180deg, #f6fafb 0%, #e7f0f4 100%); color: var(--text); text-align: left; padding: 64px 0 56px; overflow: hidden; }
+    /* ===== 2026-11-18 맨 위는 병원 사진 대문(.hero, css/style.css), 증상 지도는 병원 소개 아래 구역 ===== */
+    .hero.hero-photo { padding: 120px 0 116px; }
+    .hero.hero-photo p { margin-bottom: 0; }
+    /* 증상 지도 구역 (예전 .hero.hero-v2 → .section.hero-v2) */
+    .hero-v2 { background: linear-gradient(180deg, #f6fafb 0%, #e7f0f4 100%); color: var(--text); text-align: left; overflow: hidden; }
     .hero-v2 .hv2 { display: grid; grid-template-columns: 1fr minmax(300px, 400px); gap: 56px; align-items: center; }
-    .hv2-eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--primary); font-weight: 700; font-size: 0.92rem; margin-bottom: 18px; }
-    .hv2-eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--accent); }
-    .hero-v2 h1 { font-family: "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", serif; font-weight: 700; color: #15181c; text-shadow: none;
-      font-size: clamp(2rem, 3.6vw, 2.9rem); line-height: 1.34; letter-spacing: -0.02em; margin-bottom: 28px; }
-    .hero-v2 .br-m { display: none; }
-    .hero.hero-v2 h1, .hero.hero-v2 .hv2-hint { animation: none; opacity: 1; transform: none; }
+    .hero-v2 .section-title { text-align: left; margin-bottom: 26px; }
     .hero-v2 .hv2-hint { color: var(--primary-dark); font-size: 0.98rem; font-weight: 700; margin: 0 0 8px; max-width: none; text-shadow: none; }
     .hero-v2 .symmap-list { gap: 0; max-width: 380px; grid-template-columns: 1fr; }
     .hero-v2 .symrow { background: none; border: 0; border-bottom: 1px solid #d3dfe5; border-radius: 0; box-shadow: none; padding: 12px 2px; font-size: 1.02rem; }
@@ -224,20 +222,25 @@
     .hero-v2 .symmap-figure img { mix-blend-mode: multiply; }
     .hero-v2 .symmap-dot { transition: transform 0.15s, box-shadow 0.15s; }
     .hero-v2 .symmap-dot.on { background: var(--accent); box-shadow: 0 0 0 6px rgba(63, 167, 150, 0.28); }
-    .lobby-band img { display: block; width: 100%; aspect-ratio: 21 / 9; max-height: 400px; object-fit: cover; }
     @media (max-width: 768px) {
-      .hero.hero-v2 { padding: 24px 0 20px; }
+      .hero.hero-photo {
+        background:
+          linear-gradient(180deg, rgba(10, 38, 54, 0) 30%, rgba(10, 38, 54, 0.55) 62%, rgba(10, 38, 54, 0.7) 100%),
+          url("images/hero.jpg") 4% 40% / cover no-repeat,
+          linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 100%);
+        padding: 190px 0 30px;
+      }
+      .hero.hero-photo .eyebrow { margin-bottom: 12px; }
+      .hero.hero-photo h1 { font-size: 1.6rem; margin-bottom: 10px; }
+      .hero.hero-photo p { font-size: 0.92rem; }
       .hero-v2 .hv2 { display: block; position: relative; }
       .hero-v2 .hv2-text { position: relative; z-index: 2; pointer-events: none; }
       .hero-v2 .hv2-text > * { pointer-events: auto; }
-      .hv2-eyebrow { font-size: 0.84rem; margin-bottom: 12px; }
-      .hero-v2 .br-m { display: inline; }
-      .hero-v2 h1 { font-size: clamp(1.85rem, 8.6vw, 2.3rem); width: fit-content; margin-bottom: 12px; }
+      .hero-v2 .section-title { margin-bottom: 14px; }
       .hero-v2 .hv2-hint { width: fit-content; font-size: 0.9rem; }
       .hero-v2 .symmap-list { width: 47%; max-width: 190px; }
       .hero-v2 .symrow { font-size: 0.93rem; padding: 8px 0; gap: 9px; }
-      .hero-v2 .symmap-figure { position: absolute; right: -25vw; bottom: -16px; width: 82vw; max-width: none; margin: 0; }
-      .lobby-band img { aspect-ratio: 16 / 9; }
+      .hero-v2 .symmap-figure { position: absolute; right: -25vw; bottom: -56px; width: 82vw; max-width: none; margin: 0; }
     }
   </style>
 </head>
@@ -263,105 +266,15 @@
     </div>
   </header>
 
-  <!-- ===== 첫 화면: 문구 + 증상 지도 (2026-11-16 개편) ===== -->
-  <section class="hero hero-v2" id="symptoms">
+  <!-- ===== 히어로: 병원 사진 대문 (2026-11-18 사진 대문 복원) ===== -->
+  <section class="hero hero-photo">
     <div class="container">
-      <div class="symmap hv2">
-        <div class="hv2-text">
-          <span class="hv2-eyebrow">관악구 · 턱관절 집중 클리닉</span>
-          <h1>턱의 편안함에서 <br class="br-m" />시작되는<br />건강한 미소</h1>
-          <p class="hv2-hint">불편한 곳을 눌러 보세요</p>
-          <ol class="symmap-list">
-          <li>
-            <a class="symrow" href="learn/headache.html" data-sym="1"><span class="no">1</span><span class="t">두통</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-          </li>
-          <li>
-            <a class="symrow" href="learn/ear.html" data-sym="2"><span class="no">2</span><span class="t">이명 · 귀 먹먹함</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-          </li>
-          <li>
-            <a class="symrow" href="learn/sound.html" data-sym="3"><span class="no">3</span><span class="t">턱 소리</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-          </li>
-          <li>
-            <a class="symrow" href="learn/lock.html" data-sym="4"><span class="no">4</span><span class="t">개구 제한 · 턱 빠짐</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-          </li>
-          <li>
-            <a class="symrow" href="learn/morning.html" data-sym="5"><span class="no">5</span><span class="t">이갈이 · 아침 턱 통증</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-          </li>
-          <li>
-            <a class="symrow" href="learn/asymmetry.html" data-sym="6"><span class="no">6</span><span class="t">안면비대칭</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-          </li>
-          <li>
-            <a class="symrow" href="learn/neck.html" data-sym="7"><span class="no">7</span><span class="t">목 · 어깨 결림</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-          </li>
-          <li>
-            <a class="symrow" href="learn/chronic.html" data-sym="8"><span class="no">8</span><span class="t">만성 통증</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-          </li>
-          <li>
-            <a class="symrow" href="learn/sleep.html" data-sym="9"><span class="no">9</span><span class="t">코골이 · 수면</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-          </li>
-        </ol>
-        </div>
-        <div class="symmap-figure">
-          <img src="images/symptom-map.jpg" alt="턱관절 연관 증상 지도 — 옆모습 그림 위에 증상 위치를 번호로 표시" />
-          <div class="symmap-glows" aria-hidden="true"></div>
-          <button type="button" class="symmap-dot" style="left:40.0%;top:25.5%" data-sym="1" aria-label="두통 부위 표시" aria-pressed="false"><span>1</span></button>
-          <button type="button" class="symmap-dot" style="left:53.5%;top:38.0%" data-sym="2" aria-label="이명 · 귀 먹먹함 부위 표시" aria-pressed="false"><span>2</span></button>
-          <button type="button" class="symmap-dot" style="left:45.0%;top:36.5%" data-sym="3" aria-label="턱 소리 부위 표시" aria-pressed="false"><span>3</span></button>
-          <button type="button" class="symmap-dot" style="left:43.0%;top:45.0%" data-sym="4" aria-label="개구 제한 · 턱 빠짐 부위 표시" aria-pressed="false"><span>4</span></button>
-          <button type="button" class="symmap-dot" style="left:31.0%;top:46.0%" data-sym="5" aria-label="이갈이 · 아침 턱 통증 부위 표시" aria-pressed="false"><span>5</span></button>
-          <button type="button" class="symmap-dot" style="left:21.0%;top:53.0%" data-sym="6" aria-label="안면비대칭 부위 표시" aria-pressed="false"><span>6</span></button>
-          <button type="button" class="symmap-dot" style="left:57.0%;top:67.0%" data-sym="7" aria-label="목 · 어깨 결림 부위 표시" aria-pressed="false"><span>7</span></button>
-          <button type="button" class="symmap-dot" style="left:44.0%;top:9.0%" data-sym="8" aria-label="만성 통증 부위 표시" aria-pressed="false"><span>8</span></button>
-          <button type="button" class="symmap-dot" style="left:43.0%;top:62.0%" data-sym="9" aria-label="코골이 · 수면 부위 표시" aria-pressed="false"><span>9</span></button>
-        </div>
-      </div>
+      <span class="eyebrow">관악구 · 턱관절 집중 클리닉</span>
+      <h1>턱의 편안함에서 시작되는<br />건강한 미소</h1>
+      <p>턱관절 · 교합 · 통증을 함께 살피는 진료.<br />
+        치아만 보지 않고, 턱관절과 신경까지 확인합니다.</p>
     </div>
   </section>
-
-  <!-- ===== 병원 실제 사진 ===== -->
-  <section class="lobby-band" aria-label="병원 전경">
-    <img src="images/hero.jpg" alt="이음턱편한치과 접수 공간" loading="lazy" />
-  </section>
-
-  <script>
-    (function () {
-      var GLOWS = {"1": [[40, 26, 11, 8]], "2": [[53.5, 38.5, 4.5, 5.5]], "3": [[45, 36.5, 6, 5]], "4": [[43, 45, 6.5, 6]], "5": [[31, 47, 8, 7]], "6": [[16, 54, 5, 4.5], [25, 55, 6, 5], [34, 52, 6, 5], [41, 45, 5, 6]], "7": [[55, 68, 12, 10], [55, 88, 25, 9]], "8": [[44, 14, 17, 10]], "9": [[43, 62, 6, 7]]};
-      var wrap = document.querySelector('.symmap-glows');
-      var current = null;
-      function render(n) {
-        wrap.innerHTML = '';
-        if (!n) return;
-        GLOWS[n].forEach(function (g) {
-          var d = document.createElement('div');
-          d.className = 'symglow';
-          d.style.left = (g[0] - g[2]) + '%';
-          d.style.top = (g[1] - g[3]) + '%';
-          d.style.width = (g[2] * 2) + '%';
-          d.style.height = (g[3] * 2) + '%';
-          wrap.appendChild(d);
-        });
-      }
-      function mark() {
-        document.querySelectorAll('.symmap [data-sym]').forEach(function (e) {
-          var on = e.dataset.sym === current;
-          e.classList.toggle('on', on);
-          if (e.classList.contains('symmap-dot')) e.setAttribute('aria-pressed', on ? 'true' : 'false');
-        });
-      }
-      document.querySelectorAll('.symmap-dot').forEach(function (el) {
-        el.addEventListener('click', function () {
-          current = (current === el.dataset.sym) ? null : el.dataset.sym;
-          render(current);
-          mark();
-        });
-      });
-      document.querySelectorAll('.symrow').forEach(function (el) {
-        el.addEventListener('mouseenter', function () { render(el.dataset.sym); });
-        el.addEventListener('mouseleave', function () { render(current); });
-      });
-    })();
-  </script>
-
 
   <!-- ===== 치료 전후 사례 (사진이 없으면 자동으로 숨겨집니다) ===== -->
   <section class="section" id="cases">
@@ -419,6 +332,104 @@
       </div>
     </div>
   </section>
+
+  <!-- ===== 턱관절 연관 증상: 증상 지도 (2026-11-18 병원 소개 아래로 이동) ===== -->
+  <section class="section hero-v2" id="symptoms">
+    <div class="container">
+      <div class="symmap hv2">
+        <div class="hv2-text">
+          <div class="section-title">
+            <span class="label">Symptoms</span>
+            <h2>턱관절 연관 증상</h2>
+          </div>
+          <p class="hv2-hint">불편한 곳을 눌러 보세요</p>
+          <ol class="symmap-list">
+          <li>
+            <a class="symrow" href="learn/headache.html" data-sym="1"><span class="no">1</span><span class="t">두통</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          </li>
+          <li>
+            <a class="symrow" href="learn/ear.html" data-sym="2"><span class="no">2</span><span class="t">이명 · 귀 먹먹함</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          </li>
+          <li>
+            <a class="symrow" href="learn/sound.html" data-sym="3"><span class="no">3</span><span class="t">턱 소리</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          </li>
+          <li>
+            <a class="symrow" href="learn/lock.html" data-sym="4"><span class="no">4</span><span class="t">개구 제한 · 턱 빠짐</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          </li>
+          <li>
+            <a class="symrow" href="learn/morning.html" data-sym="5"><span class="no">5</span><span class="t">이갈이 · 아침 턱 통증</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          </li>
+          <li>
+            <a class="symrow" href="learn/asymmetry.html" data-sym="6"><span class="no">6</span><span class="t">안면비대칭</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          </li>
+          <li>
+            <a class="symrow" href="learn/neck.html" data-sym="7"><span class="no">7</span><span class="t">목 · 어깨 결림</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          </li>
+          <li>
+            <a class="symrow" href="learn/chronic.html" data-sym="8"><span class="no">8</span><span class="t">만성 통증</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          </li>
+          <li>
+            <a class="symrow" href="learn/sleep.html" data-sym="9"><span class="no">9</span><span class="t">코골이 · 수면</span><span class="more"><span class="mt-full">더 알아보기</span><span class="mt-short">더 보기</span><svg class="arr" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          </li>
+        </ol>
+        </div>
+        <div class="symmap-figure">
+          <img src="images/symptom-map.jpg" alt="턱관절 연관 증상 지도 — 옆모습 그림 위에 증상 위치를 번호로 표시" />
+          <div class="symmap-glows" aria-hidden="true"></div>
+          <button type="button" class="symmap-dot" style="left:40.0%;top:25.5%" data-sym="1" aria-label="두통 부위 표시" aria-pressed="false"><span>1</span></button>
+          <button type="button" class="symmap-dot" style="left:53.5%;top:38.0%" data-sym="2" aria-label="이명 · 귀 먹먹함 부위 표시" aria-pressed="false"><span>2</span></button>
+          <button type="button" class="symmap-dot" style="left:45.0%;top:36.5%" data-sym="3" aria-label="턱 소리 부위 표시" aria-pressed="false"><span>3</span></button>
+          <button type="button" class="symmap-dot" style="left:43.0%;top:45.0%" data-sym="4" aria-label="개구 제한 · 턱 빠짐 부위 표시" aria-pressed="false"><span>4</span></button>
+          <button type="button" class="symmap-dot" style="left:31.0%;top:46.0%" data-sym="5" aria-label="이갈이 · 아침 턱 통증 부위 표시" aria-pressed="false"><span>5</span></button>
+          <button type="button" class="symmap-dot" style="left:21.0%;top:53.0%" data-sym="6" aria-label="안면비대칭 부위 표시" aria-pressed="false"><span>6</span></button>
+          <button type="button" class="symmap-dot" style="left:57.0%;top:67.0%" data-sym="7" aria-label="목 · 어깨 결림 부위 표시" aria-pressed="false"><span>7</span></button>
+          <button type="button" class="symmap-dot" style="left:44.0%;top:9.0%" data-sym="8" aria-label="만성 통증 부위 표시" aria-pressed="false"><span>8</span></button>
+          <button type="button" class="symmap-dot" style="left:43.0%;top:62.0%" data-sym="9" aria-label="코골이 · 수면 부위 표시" aria-pressed="false"><span>9</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <script>
+    (function () {
+      var GLOWS = {"1": [[40, 26, 11, 8]], "2": [[53.5, 38.5, 4.5, 5.5]], "3": [[45, 36.5, 6, 5]], "4": [[43, 45, 6.5, 6]], "5": [[31, 47, 8, 7]], "6": [[16, 54, 5, 4.5], [25, 55, 6, 5], [34, 52, 6, 5], [41, 45, 5, 6]], "7": [[55, 68, 12, 10], [55, 88, 25, 9]], "8": [[44, 14, 17, 10]], "9": [[43, 62, 6, 7]]};
+      var wrap = document.querySelector('.symmap-glows');
+      var current = null;
+      function render(n) {
+        wrap.innerHTML = '';
+        if (!n) return;
+        GLOWS[n].forEach(function (g) {
+          var d = document.createElement('div');
+          d.className = 'symglow';
+          d.style.left = (g[0] - g[2]) + '%';
+          d.style.top = (g[1] - g[3]) + '%';
+          d.style.width = (g[2] * 2) + '%';
+          d.style.height = (g[3] * 2) + '%';
+          wrap.appendChild(d);
+        });
+      }
+      function mark() {
+        document.querySelectorAll('.symmap [data-sym]').forEach(function (e) {
+          var on = e.dataset.sym === current;
+          e.classList.toggle('on', on);
+          if (e.classList.contains('symmap-dot')) e.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+      }
+      document.querySelectorAll('.symmap-dot').forEach(function (el) {
+        el.addEventListener('click', function () {
+          current = (current === el.dataset.sym) ? null : el.dataset.sym;
+          render(current);
+          mark();
+        });
+      });
+      document.querySelectorAll('.symrow').forEach(function (el) {
+        el.addEventListener('mouseenter', function () { render(el.dataset.sym); });
+        el.addEventListener('mouseleave', function () { render(current); });
+      });
+    })();
+  </script>
+
 
   <!-- ===== 진료 특징 (사진+텍스트 교차) ===== -->
   <section class="section" id="why">
