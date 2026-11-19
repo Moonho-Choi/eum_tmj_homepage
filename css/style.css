@@ -1058,3 +1058,13 @@ body.fx #services .reveal {
 .meaw-lockup > .kmeaw-name { display: flex; flex-direction: column; gap: 3px; line-height: 1.1; }
 .kmeaw-name small { font-size: 0.7rem; font-weight: 600; color: var(--text-light); }
 .meaw-lockup .kmeaw-name b { font-size: 0.98rem; font-weight: 800; letter-spacing: 0; color: #16262E; line-height: 1.1; }
+
+/* 입체 단추: 아래에 두꺼운 받침 그림자, 누르면 받침만큼 쑥 들어간다 (대표원장 소개 보기) */
+.btn-3d {
+  border-radius: 16px; padding: 15px 30px; font-weight: 800;
+  box-shadow: 0 6px 0 var(--primary-dark), 0 12px 22px rgba(15, 76, 99, 0.28);
+  margin-bottom: 6px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.2s;
+}
+.btn-3d:hover { transform: translateY(-1px); box-shadow: 0 7px 0 var(--primary-dark), 0 14px 24px rgba(15, 76, 99, 0.3); }
+.btn-3d:active { transform: translateY(5px); box-shadow: 0 1px 0 var(--primary-dark), 0 4px 10px rgba(15, 76, 99, 0.2); }
