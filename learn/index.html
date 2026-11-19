@@ -72,8 +72,9 @@
       transition: box-shadow 0.25s, transform 0.25s;
     }
     .symptom-card:hover { box-shadow: 0 12px 28px rgba(15,76,99,0.14); transform: translateY(-3px); }
-    .symptom-card .card-photo { aspect-ratio: 3 / 2; overflow: hidden; }
-    .symptom-card .card-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    /* 선형 픽토그램: 연한 바탕 위에 그림 전체가 보이게 (자르지 않음) */
+    .symptom-card .card-photo { aspect-ratio: 3 / 2; overflow: hidden; background: var(--bg-soft); padding: 14% 18% 10%; }
+    .symptom-card .card-photo img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.4s ease; }
     .symptom-card:hover .card-photo img { transform: scale(1.04); }
     .symptom-card .card-label {
       padding: 13px 8px; text-align: center;
@@ -181,47 +182,47 @@
       <div class="symptom-grid">
 
         <a class="symptom-card" href="ear.html">
-          <div class="card-photo"><img src="img/cards/card-ear.jpg" alt="귀 앞을 짚고 있는 여성" loading="lazy" /></div>
+          <div class="card-photo"><img src="img/picto/pic-ear.png" alt="귀 앞을 짚고 있는 여성" loading="lazy" /></div>
           <div class="card-label">이명 · 귀 먹먹함</div>
         </a>
 
         <a class="symptom-card" href="headache.html">
-          <div class="card-photo"><img src="img/cards/card-headache.jpg" alt="관자놀이를 짚은 여성" loading="lazy" /></div>
+          <div class="card-photo"><img src="img/picto/pic-head.png" alt="관자놀이를 짚은 여성" loading="lazy" /></div>
           <div class="card-label">두통</div>
         </a>
 
         <a class="symptom-card" href="sound.html">
-          <div class="card-photo"><img src="img/cards/card-sound.jpg" alt="턱에 손을 댄 여성" loading="lazy" /></div>
+          <div class="card-photo"><img src="img/picto/pic-lock.png" alt="턱에 손을 댄 여성" loading="lazy" /></div>
           <div class="card-label">턱 소리</div>
         </a>
 
         <a class="symptom-card" href="lock.html">
-          <div class="card-photo"><img src="img/cards/card-lock.jpg" alt="턱에 붕대를 감은 남성" loading="lazy" /></div>
+          <div class="card-photo"><img src="img/picto/pic-open.png" alt="턱에 붕대를 감은 남성" loading="lazy" /></div>
           <div class="card-label">개구 제한 · 턱 빠짐</div>
         </a>
 
         <a class="symptom-card" href="morning.html">
-          <div class="card-photo"><img src="img/cards/card-morning.jpg" alt="아침 침대에서 턱을 짚은 여성" loading="lazy" /></div>
+          <div class="card-photo"><img src="img/picto/pic-grind-sleep.png" alt="아침 침대에서 턱을 짚은 여성" loading="lazy" /></div>
           <div class="card-label">이갈이 · 아침 턱 통증</div>
         </a>
 
         <a class="symptom-card" href="neck.html">
-          <div class="card-photo"><img src="img/cards/card-neck.jpg" alt="목덜미를 잡고 있는 사람" loading="lazy" /></div>
+          <div class="card-photo"><img src="img/picto/pic-neck.png" alt="목덜미를 잡고 있는 사람" loading="lazy" /></div>
           <div class="card-label">목 · 어깨 결림</div>
         </a>
 
         <a class="symptom-card" href="sleep.html">
-          <div class="card-photo"><img src="img/cards/card-sleep.jpg" alt="아래턱과 기도의 단면 그림" loading="lazy" /></div>
+          <div class="card-photo"><img src="img/picto/pic-sleep.png" alt="아래턱과 기도의 단면 그림" loading="lazy" /></div>
           <div class="card-label">코골이 · 수면</div>
         </a>
 
         <a class="symptom-card" href="asymmetry.html">
-          <div class="card-photo"><img src="img/cards/card-asym.jpg" alt="정면 얼굴" loading="lazy" /></div>
+          <div class="card-photo"><img src="img/picto/pic-asym.png" alt="정면 얼굴" loading="lazy" /></div>
           <div class="card-label">안면비대칭</div>
         </a>
 
         <a class="symptom-card" href="chronic.html">
-          <div class="card-photo"><img src="img/cards/card-chronic.jpg" alt="치과 진료실의 환자" loading="lazy" /></div>
+          <div class="card-photo"><img src="img/picto/pic-chronic.png" alt="치과 진료실의 환자" loading="lazy" /></div>
           <div class="card-label">만성 통증</div>
         </a>
 
