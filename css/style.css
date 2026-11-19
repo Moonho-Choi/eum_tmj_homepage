@@ -1068,3 +1068,13 @@ body.fx #services .reveal {
 }
 .btn-3d:hover { transform: translateY(-1px); box-shadow: 0 7px 0 var(--primary-dark), 0 14px 24px rgba(15, 76, 99, 0.3); }
 .btn-3d:active { transform: translateY(5px); box-shadow: 0 1px 0 var(--primary-dark), 0 4px 10px rgba(15, 76, 99, 0.2); }
+
+/* 소속 상자 = 각 연구회 홈페이지 링크: 옅은 입체 받침 + 청록 테두리로 누르는 단추처럼
+   (대표원장 소개 단추보다 옅게 — 가장 눈에 띄는 것은 원장 단추) */
+a.meaw-lockup {
+  border: 1.5px solid #9cc3d2; margin-bottom: 4px;
+  box-shadow: 0 4px 0 #c9dde6, 0 8px 16px rgba(15, 76, 99, 0.10);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.2s;
+}
+a.meaw-lockup:hover { border-color: var(--primary); transform: translateY(-1px); }
+a.meaw-lockup:active { transform: translateY(3px); box-shadow: 0 1px 0 #c9dde6, 0 3px 8px rgba(15, 76, 99, 0.08); }
