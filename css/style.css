@@ -1052,3 +1052,9 @@ body.fx #services .reveal {
 
 /* ===== 2026-11-17 명조 큰 제목: 흰 바탕의 구역 큰 제목(검정)과 단색 바탕의 맨 위 제목(흰색)에만. 사진 위 제목·글 안 소제목·본문·메뉴·단추는 고딕 유지 ===== */
 #cases .section-title h2 { font-family: inherit; font-weight: 800; color: var(--primary-dark); letter-spacing: normal; } /* 2026-11-17 원장 지시: 안면비대칭 구역 제목만 명조 이전 고딕으로 되돌림 */
+/* 한국 MEAW 교정연구회: 같은 흰 상자에 둥근 문양 + 두 줄 이름 (두 상자 높이를 맞춤) */
+.meaw-lockup { min-height: 50px; }
+.kmeaw-lockup img { width: 36px; }
+.meaw-lockup > .kmeaw-name { display: flex; flex-direction: column; gap: 3px; line-height: 1.1; }
+.kmeaw-name small { font-size: 0.7rem; font-weight: 600; color: var(--text-light); }
+.meaw-lockup .kmeaw-name b { font-size: 0.98rem; font-weight: 800; letter-spacing: 0; color: #16262E; line-height: 1.1; }
